@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { Desktop, Mobile } from '../utils/mediaQuery';
 
@@ -16,8 +17,13 @@ const Navbar = () => {
             </ul>{' '}
             <div className="flex-auto"></div>
             <ul className="flex gap-8 text-sm ">
-              <li className="cursor-pointer">Login</li>
-              <li className="cursor-pointer">SignUp</li>
+              {' '}
+              <Link href="/login">
+                <li className="cursor-pointer">Login</li>{' '}
+              </Link>
+              <Link href="/signup">
+                <li className="cursor-pointer">SignUp</li>
+              </Link>
             </ul>
           </>
         </Desktop>
