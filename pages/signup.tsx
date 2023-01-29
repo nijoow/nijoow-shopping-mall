@@ -4,12 +4,16 @@ import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { supabase } from '../lib/supabase';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import useAuth from './hooks/useAuth';
+
 interface FormValues {
   email: string;
   password: string;
   passwordCheck: string;
 }
 const SignUp: NextPage = () => {
+  const { signUp } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -17,28 +21,9 @@ const SignUp: NextPage = () => {
     formState: { errors },
   } = useForm<FormValues>({ mode: 'onChange' });
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    onSignUp({ email: data.email, password: data.password });
-  };
-  const onSignUp = async (payload: { email: string; password: string }) => {
-    try {
-      setLoading(true);
-      const { error } = await supabase.auth.signUp(payload);
-      if (error) {
-        console.log(error);
-      } else {
-        router.push('/');
-      }
-    } catch (error) {
-      console.log(error);
-      setErrorMessage(error as string);
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
+    signUp({ email: data.email.trim(), password: data.password.trim() });
   };
 
   return (
