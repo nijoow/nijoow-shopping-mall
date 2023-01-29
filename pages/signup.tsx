@@ -1,6 +1,9 @@
 import { NextPage } from 'next';
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { supabase } from '../lib/supabase';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 interface FormValues {
   email: string;
   password: string;
@@ -8,30 +11,55 @@ interface FormValues {
 }
 const SignUp: NextPage = () => {
   const {
-    watch,
-    setValue,
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<FormValues>();
-  const [emailCheck, setEmailCheck] = useState(false);
+  } = useForm<FormValues>({ mode: 'onChange' });
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    onSignUp({ email: data.email, password: data.password });
+  };
+  const onSignUp = async (payload: { email: string; password: string }) => {
+    try {
+      setLoading(true);
+      const { error } = await supabase.auth.signUp(payload);
+      if (error) {
+        console.log(error);
+      } else {
+        router.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error as string);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="flex items-center justify-center h-full">
-      <form className="flex flex-col w-full h-full max-w-md shadow-lg max-h-[36rem] p-8 gap-6 items-center" onSubmit={handleSubmit(onSubmit)}>
-        <span className="mx-auto text-lg font-semibold">SIGN UP</span>
+      <form className="flex flex-col w-full h-full max-w-md shadow-lg max-h-[36rem] p-8 gap-4 items-center" onSubmit={handleSubmit(onSubmit)}>
+        <span className="mx-auto mb-auto text-xl font-semibold">SIGN UP</span>
         <label className="flex flex-col w-full gap-0.5">
           <span className="mx-1 text-sm">이메일</span>
           <input
             className="w-full h-12 px-4 border rounded-lg border-zinc-200 focus:outline-zinc-700"
             type="text"
             placeholder="이메일을 입력해주세요"
-            {...register('email')}
-          />
+            {...register('email', {
+              required: true,
+              pattern: {
+                value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
+                message: '올바른 이메일 양식이 아닙니다!',
+              },
+            })}
+          />{' '}
+          <span className="h-3 m-1 text-xs text-red-500">{errors.email?.message}</span>
         </label>{' '}
         <label className="flex flex-col w-full gap-0.5">
           <span className="mx-1 text-sm">비밀번호</span>
@@ -39,8 +67,24 @@ const SignUp: NextPage = () => {
             className="w-full h-12 px-4 border rounded-lg border-zinc-200 focus:outline-zinc-700"
             type="password"
             placeholder="비밀번호를 입력해주세요"
-            {...register('password')}
+            {...register('password', {
+              required: true,
+              minLength: {
+                value: 8,
+                message: '비밀번호는 8자리 이상으로 입력해주세요',
+              },
+              maxLength: { value: 64, message: '비밀번호는 64자리 이하로 입력해주세요' },
+              pattern: {
+                value: /^(?=.*[a-zA-Z])(?=.*[₩~`!@#$%^&*()_+=-])(?=.*[0-9]).{8,25}$/,
+                message: '숫자+영문자+특수문자를 조합해주세요',
+              },
+            })}
           />{' '}
+          {errors.password?.message ? (
+            <span className="h-3 m-1 text-xs text-red-500">{errors.password?.message}</span>
+          ) : (
+            <span className="h-3 m-1 text-xs text-zinc-500">{errors.password && '숫자+영문자+특수문자를 조합한 8자리 이상으로 입력해주세요'}</span>
+          )}
         </label>{' '}
         <label className="flex flex-col w-full gap-0.5">
           <span className="mx-1 text-sm">비밀번호 확인</span>
@@ -48,11 +92,16 @@ const SignUp: NextPage = () => {
             className="w-full h-12 px-4 border rounded-lg border-zinc-200 focus:outline-zinc-700"
             type="password"
             placeholder="비밀번호를 재입력해주세요"
-            {...register('passwordCheck')}
+            {...register('passwordCheck', { required: true, validate: (value) => value === watch('password') || '비밀번호가 일치하지 않습니다' })}
           />{' '}
+          <span className="h-3 m-1 text-xs text-red-500">{errors.passwordCheck?.message}</span>
         </label>
-        <button className="px-6 py-2 my-auto font-semibold rounded-lg text-zinc-100 border-zinc-200 bg-zinc-700" type="submit">
-          회원가입
+        <button
+          className={` w-32 h-12 mt-auto flex items-center justify-center font-semibold rounded-lg text-zinc-100  ${loading ? 'bg-zinc-400' : 'bg-zinc-700'}`}
+          type="submit"
+          disabled={loading}
+        >
+          {loading ? <AiOutlineLoading3Quarters className="animate-spin" size={20} /> : '회원가입'}
         </button>
       </form>
     </div>
