@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { supabase } from '../lib/supabase';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import useAuth from './hooks/useAuth';
 
@@ -40,7 +39,7 @@ const SignUp: NextPage = () => {
               required: true,
               pattern: {
                 value: /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i,
-                message: '올바른 이메일 양식이 아닙니다!',
+                message: '올바른 이메일 양식이 아닙니다',
               },
             })}
           />{' '}
@@ -65,10 +64,10 @@ const SignUp: NextPage = () => {
               },
             })}
           />{' '}
-          {errors.password?.message ? (
+          {errors.password ? (
             <span className="h-3 m-1 text-xs text-red-500">{errors.password?.message}</span>
           ) : (
-            <span className="h-3 m-1 text-xs text-zinc-500">{errors.password && '숫자+영문자+특수문자를 조합한 8자리 이상으로 입력해주세요'}</span>
+            <span className="h-3 m-1 text-xs text-zinc-500">{!watch('password') && '숫자+영문자+특수문자를 조합한 8자리 이상으로 입력해주세요'}</span>
           )}
         </label>{' '}
         <label className="flex flex-col w-full gap-0.5">
@@ -82,7 +81,7 @@ const SignUp: NextPage = () => {
           <span className="h-3 m-1 text-xs text-red-500">{errors.passwordCheck?.message}</span>
         </label>
         <button
-          className={` w-32 h-12 mt-auto flex items-center justify-center font-semibold rounded-lg text-zinc-100  ${loading ? 'bg-zinc-400' : 'bg-zinc-700'}`}
+          className={` w-32 h-12 mt-auto flex items-center justify-center font-medium rounded-lg text-zinc-100  ${loading ? 'bg-zinc-400' : 'bg-zinc-700'}`}
           type="submit"
           disabled={loading}
         >
