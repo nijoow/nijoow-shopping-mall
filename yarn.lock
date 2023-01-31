@@ -199,6 +199,69 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stitches/core@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@stitches/core@npm:1.2.8"
+  checksum: 3a76a697b1d71ffb212e8b166f923c8f66ef99de93689dd417571f90fbba5692abb9a92220acd102baf5298896f0fdfeaa721da2d61adee1247531a26f67a15f
+  languageName: node
+  linkType: hard
+
+"@stitches/react@npm:^1.2.8":
+  version: 1.2.8
+  resolution: "@stitches/react@npm:1.2.8"
+  peerDependencies:
+    react: ">= 16.3.0"
+  checksum: 029795323cdedb5599ec0636526fc233b2cf41fa9c1f4a704b1f7f457c6170053384a7430afed45e25f73e348d7c391cf1379bc079943cd9cad44302234a5244
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-helpers-nextjs@npm:^0.5.4":
+  version: 0.5.4
+  resolution: "@supabase/auth-helpers-nextjs@npm:0.5.4"
+  dependencies:
+    "@supabase/auth-helpers-shared": 0.2.4
+  peerDependencies:
+    "@supabase/supabase-js": ^2.0.4
+  checksum: 8d5aca428f0c233affb5f9a8f63702675738e1c574044199c093816cbfa92329817458dabbead801c8ca8ef2bc17c3bf1f2c7c4cf86600ff8bc93fb1fc64b389
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-helpers-react@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@supabase/auth-helpers-react@npm:0.3.1"
+  peerDependencies:
+    "@supabase/supabase-js": ^2.0.4
+  checksum: 7974d1f913e95fb331ca84868d8bbee5806a2b381b67a1c7f69da7d2bbd5fe0e005df82572960d4e425ae7e9cdcad684095ae96566e4e2a6132e5de908756c85
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-helpers-shared@npm:0.2.4":
+  version: 0.2.4
+  resolution: "@supabase/auth-helpers-shared@npm:0.2.4"
+  peerDependencies:
+    "@supabase/supabase-js": ^2.0.4
+  checksum: c655a90782e4d64344052ffd0db208562d132c90bc1ee00af7b7c1ef22f7186721792cd4148bb47a74b1afbb5a9e8b5f03deb970612505f5296a4126d64f99b7
+  languageName: node
+  linkType: hard
+
+"@supabase/auth-ui-react@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "@supabase/auth-ui-react@npm:0.2.6"
+  dependencies:
+    "@stitches/core": ^1.2.8
+    "@stitches/react": ^1.2.8
+    fsevents: ^2.3.2
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.1 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.1 || ^18.0.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  checksum: e98cfe6d18c5f7744affd0f6bd5ece1cbac4b28df8ec0ca5ae68131aa6a4787b0e45ed3542ac0993eaf004680b09a739d339e7689ef7f56b452b06d25f5d1abe
+  languageName: node
+  linkType: hard
+
 "@supabase/functions-js@npm:^2.0.0":
   version: 2.0.0
   resolution: "@supabase/functions-js@npm:2.0.0"
@@ -1746,7 +1809,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@npm:~2.3.2":
+"fsevents@npm:^2.3.2, fsevents@npm:~2.3.2":
   version: 2.3.2
   resolution: "fsevents@npm:2.3.2"
   dependencies:
@@ -1756,7 +1819,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
+"fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
   resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
   dependencies:
@@ -3143,7 +3206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.1, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.1, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -3370,6 +3433,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@supabase/auth-helpers-nextjs": ^0.5.4
+    "@supabase/auth-helpers-react": ^0.3.1
+    "@supabase/auth-ui-react": ^0.2.6
     "@supabase/supabase-js": ^2.4.0
     "@types/eslint": ^8
     "@types/node": 18.11.3
