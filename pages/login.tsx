@@ -2,8 +2,7 @@ import { GetServerSideProps, NextPage, NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { AiOutlineSwapRight } from 'react-icons/ai';
-import { supabase } from '../lib/supabase';
+import { AiOutlineLoading3Quarters, AiOutlineSwapRight } from 'react-icons/ai';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import useAuth from './hooks/useAuth';
@@ -14,15 +13,13 @@ interface FormValues {
   password: string;
 }
 const LogIn: NextPage = () => {
-  const { logIn } = useAuth();
+  const { logIn, loading } = useAuth();
+
   const {
-    watch,
-    setValue,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  const [loading, setLoading] = useState(false);
 
   const [emailCheck, setEmailCheck] = useState(false);
   const router = useRouter();
@@ -51,9 +48,13 @@ const LogIn: NextPage = () => {
             )}
           </div>
           <div className={`relative flex items-center transition-all duration-500 w-full ${emailCheck ? 'translate-y-0' : '-translate-y-full'}`}>
-            <input className="w-full h-12 px-4 border rounded-b-lg border-zinc-200 focus:outline-zinc-700" {...register('password', { required: true })} />
-            <button className="absolute flex items-center justify-center w-8 h-8 border rounded-full cursor-pointer right-4" type="submit">
-              <AiOutlineSwapRight />
+            <input
+              className="w-full h-12 px-4 border rounded-b-lg border-zinc-200 focus:outline-zinc-700"
+              type="password"
+              {...register('password', { required: true })}
+            />
+            <button className="absolute flex items-center justify-center w-8 h-8 border rounded-full cursor-pointer right-4" type="submit" disabled={loading}>
+              {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : <AiOutlineSwapRight />}
             </button>
           </div>
         </div>
