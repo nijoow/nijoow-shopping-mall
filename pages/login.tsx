@@ -1,10 +1,13 @@
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage, NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineSwapRight } from 'react-icons/ai';
 import { supabase } from '../lib/supabase';
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import useAuth from './hooks/useAuth';
+import { supabaseEnv } from '../config/config';
 
 interface FormValues {
   email: string;
@@ -61,3 +64,23 @@ const LogIn: NextPage = () => {
 };
 
 export default LogIn;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const supabase = createServerSupabaseClient(context, supabaseEnv);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session?.user)
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  else
+    return {
+      props: {},
+    };
+};
