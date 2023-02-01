@@ -5,7 +5,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLoading3Quarters, AiOutlineSwapRight } from 'react-icons/ai';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import useAuth from './hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import { supabaseEnv } from '../config/config';
 
 interface FormValues {

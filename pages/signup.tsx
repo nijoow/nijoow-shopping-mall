@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import useAuth from './hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 
 interface FormValues {
   email: string;

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
-import useAuth from '../pages/hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import { Desktop, Mobile } from '../utils/mediaQuery';
 
 const Navbar = () => {
