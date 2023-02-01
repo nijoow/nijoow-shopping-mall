@@ -28,6 +28,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@supabase/auth-helpers-nextjs", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.5.4"],\
+            ["@supabase/auth-helpers-react", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.3.1"],\
+            ["@supabase/auth-ui-react", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.2.6"],\
             ["@supabase/supabase-js", "npm:2.4.0"],\
             ["@types/eslint", "npm:8.4.10"],\
             ["@types/node", "npm:18.11.3"],\
@@ -51,6 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:18.2.0"],\
             ["react-hook-form", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:7.42.1"],\
+            ["react-icons", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.7.1"],\
             ["react-responsive", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.0.2"],\
             ["tailwindcss", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:3.2.4"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
@@ -290,6 +294,134 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@npmcli/move-file", "npm:2.0.1"],\
             ["mkdirp", "npm:1.0.4"],\
             ["rimraf", "npm:3.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@stitches/core", [\
+        ["npm:1.2.8", {\
+          "packageLocation": "./.yarn/cache/@stitches-core-npm-1.2.8-459f395a74-3a76a697b1.zip/node_modules/@stitches/core/",\
+          "packageDependencies": [\
+            ["@stitches/core", "npm:1.2.8"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@stitches/react", [\
+        ["npm:1.2.8", {\
+          "packageLocation": "./.yarn/cache/@stitches-react-npm-1.2.8-445a1042b8-029795323c.zip/node_modules/@stitches/react/",\
+          "packageDependencies": [\
+            ["@stitches/react", "npm:1.2.8"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:84aaf845c669ae601f295637938a576b3bc59e51be88984f97a8ec8ccb4d3f33ffc867cdc09e709d328b3c20f62c02534a66465f8ee9b8e7bc27073444f3a516#npm:1.2.8", {\
+          "packageLocation": "./.yarn/__virtual__/@stitches-react-virtual-0d58653c52/0/cache/@stitches-react-npm-1.2.8-445a1042b8-029795323c.zip/node_modules/@stitches/react/",\
+          "packageDependencies": [\
+            ["@stitches/react", "virtual:84aaf845c669ae601f295637938a576b3bc59e51be88984f97a8ec8ccb4d3f33ffc867cdc09e709d328b3c20f62c02534a66465f8ee9b8e7bc27073444f3a516#npm:1.2.8"],\
+            ["@types/react", "npm:18.0.21"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-helpers-nextjs", [\
+        ["npm:0.5.4", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-helpers-nextjs-npm-0.5.4-eec5f8348d-8d5aca428f.zip/node_modules/@supabase/auth-helpers-nextjs/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-nextjs", "npm:0.5.4"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.5.4", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-helpers-nextjs-virtual-9fc18de8a8/0/cache/@supabase-auth-helpers-nextjs-npm-0.5.4-eec5f8348d-8d5aca428f.zip/node_modules/@supabase/auth-helpers-nextjs/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-nextjs", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.5.4"],\
+            ["@supabase/auth-helpers-shared", "virtual:9fc18de8a8877f9eff14f965848683bf9737f4064c045b89cbf595066894291655be7a90cb05622f03b160284d720c475fd82a9c545313d260fc079f9c251ed8#npm:0.2.4"],\
+            ["@supabase/supabase-js", "npm:2.4.0"],\
+            ["@types/supabase__supabase-js", null]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-helpers-react", [\
+        ["npm:0.3.1", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-helpers-react-npm-0.3.1-fb903f46c8-7974d1f913.zip/node_modules/@supabase/auth-helpers-react/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-react", "npm:0.3.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.3.1", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-helpers-react-virtual-935f2d3e3f/0/cache/@supabase-auth-helpers-react-npm-0.3.1-fb903f46c8-7974d1f913.zip/node_modules/@supabase/auth-helpers-react/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-react", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.3.1"],\
+            ["@supabase/supabase-js", "npm:2.4.0"],\
+            ["@types/supabase__supabase-js", null]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-helpers-shared", [\
+        ["npm:0.2.4", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-helpers-shared-npm-0.2.4-900b9ec357-c655a90782.zip/node_modules/@supabase/auth-helpers-shared/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-shared", "npm:0.2.4"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:9fc18de8a8877f9eff14f965848683bf9737f4064c045b89cbf595066894291655be7a90cb05622f03b160284d720c475fd82a9c545313d260fc079f9c251ed8#npm:0.2.4", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-helpers-shared-virtual-f6128cf9e9/0/cache/@supabase-auth-helpers-shared-npm-0.2.4-900b9ec357-c655a90782.zip/node_modules/@supabase/auth-helpers-shared/",\
+          "packageDependencies": [\
+            ["@supabase/auth-helpers-shared", "virtual:9fc18de8a8877f9eff14f965848683bf9737f4064c045b89cbf595066894291655be7a90cb05622f03b160284d720c475fd82a9c545313d260fc079f9c251ed8#npm:0.2.4"],\
+            ["@supabase/supabase-js", "npm:2.4.0"],\
+            ["@types/supabase__supabase-js", null]\
+          ],\
+          "packagePeers": [\
+            "@supabase/supabase-js",\
+            "@types/supabase__supabase-js"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@supabase/auth-ui-react", [\
+        ["npm:0.2.6", {\
+          "packageLocation": "./.yarn/cache/@supabase-auth-ui-react-npm-0.2.6-19491033f5-e98cfe6d18.zip/node_modules/@supabase/auth-ui-react/",\
+          "packageDependencies": [\
+            ["@supabase/auth-ui-react", "npm:0.2.6"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.2.6", {\
+          "packageLocation": "./.yarn/__virtual__/@supabase-auth-ui-react-virtual-84aaf845c6/0/cache/@supabase-auth-ui-react-npm-0.2.6-19491033f5-e98cfe6d18.zip/node_modules/@supabase/auth-ui-react/",\
+          "packageDependencies": [\
+            ["@supabase/auth-ui-react", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.2.6"],\
+            ["@stitches/core", "npm:1.2.8"],\
+            ["@stitches/react", "virtual:84aaf845c669ae601f295637938a576b3bc59e51be88984f97a8ec8ccb4d3f33ffc867cdc09e709d328b3c20f62c02534a66465f8ee9b8e7bc27073444f3a516#npm:1.2.8"],\
+            ["@types/react", "npm:18.0.21"],\
+            ["@types/react-dom", "npm:18.0.6"],\
+            ["fsevents", "patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4037,6 +4169,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-icons", [\
+        ["npm:4.7.1", {\
+          "packageLocation": "./.yarn/cache/react-icons-npm-4.7.1-27c284b383-ed3cbdc5fc.zip/node_modules/react-icons/",\
+          "packageDependencies": [\
+            ["react-icons", "npm:4.7.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.7.1", {\
+          "packageLocation": "./.yarn/__virtual__/react-icons-virtual-080312a1c9/0/cache/react-icons-npm-4.7.1-27c284b383-ed3cbdc5fc.zip/node_modules/react-icons/",\
+          "packageDependencies": [\
+            ["react-icons", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.7.1"],\
+            ["@types/react", "npm:18.0.21"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-is", [\
         ["npm:16.13.1", {\
           "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-f7a19ac349.zip/node_modules/react-is/",\
@@ -4189,6 +4343,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["root-workspace-0b6124", "workspace:."],\
+            ["@supabase/auth-helpers-nextjs", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.5.4"],\
+            ["@supabase/auth-helpers-react", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.3.1"],\
+            ["@supabase/auth-ui-react", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:0.2.6"],\
             ["@supabase/supabase-js", "npm:2.4.0"],\
             ["@types/eslint", "npm:8.4.10"],\
             ["@types/node", "npm:18.11.3"],\
@@ -4212,6 +4369,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:18.2.0"],\
             ["react-hook-form", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:7.42.1"],\
+            ["react-icons", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.7.1"],\
             ["react-responsive", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.0.2"],\
             ["tailwindcss", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:3.2.4"],\
             ["typescript", "patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"]\
