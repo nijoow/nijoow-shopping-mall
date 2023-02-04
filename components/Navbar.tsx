@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import useAuth from '../hooks/useAuth';
 import { Desktop, Mobile } from '../utils/mediaQuery';
@@ -7,16 +7,19 @@ import { Desktop, Mobile } from '../utils/mediaQuery';
 const Navbar = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const { session, logOut } = useAuth();
+
   return (
-    <nav className="w-full h-12 overflow-hidden text-zinc-100 bg-zinc-700">
+    <nav className="relative w-full h-12 overflow-hidden backdrop-opacity-100 text-brown ">
       <div className="flex items-center w-full h-full gap-20 mx-auto max-w-7xl ">
-        <div className="ml-4 text-lg font-medium cursor-pointer">nijoow shopping mall</div>
+        <Link href="/" className="ml-4 text-lg font-medium cursor-pointer font-Insomnia">
+          nijoow vintage
+        </Link>
         <Desktop>
           <>
-            <ul className="flex gap-12 text-sm font-medium">
-              <li className="cursor-pointer">menu1</li>
-              <li className="cursor-pointer">menu2</li>
-              <li className="cursor-pointer">menu3</li>
+            <ul className="flex gap-12 text-sm font-medium ">
+              <li className="cursor-pointer font-Insomnia">menu</li>
+              <li className="cursor-pointer font-Insomnia">menu</li>
+              <li className="cursor-pointer font-Insomnia">menu</li>
             </ul>{' '}
             <div className="flex-auto"></div>
             <ul className="flex gap-8 text-sm ">
@@ -29,17 +32,17 @@ const Navbar = () => {
                     </li>{' '}
                   </Link>{' '}
                   <div onClick={() => logOut()}>
-                    <li className="cursor-pointer">LogOut</li>{' '}
+                    <li className="cursor-pointer font-Insomnia">LogOut</li>{' '}
                   </div>
                 </>
               ) : (
                 <>
                   {' '}
                   <Link href="/login">
-                    <li className="cursor-pointer">Login</li>{' '}
+                    <li className="cursor-pointer font-Insomnia">Login</li>{' '}
                   </Link>
                   <Link href="/signup">
-                    <li className="cursor-pointer">SignUp</li>
+                    <li className="cursor-pointer font-Insomnia">SignUp</li>
                   </Link>
                 </>
               )}
