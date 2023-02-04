@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Insomnia';
+  src: url('../public/static/fonts/Insomnia.ttf.woff');
+}
+
 * {
   font-family: 'Spoqa Han Sans Neo', sans-serif;
 }
