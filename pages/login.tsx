@@ -12,59 +12,6 @@ interface FormValues {
   email: string;
   password: string;
 }
-const LogIn: NextPage = () => {
-  const { logIn, loading } = useAuth();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
-
-  const [emailCheck, setEmailCheck] = useState(false);
-  const router = useRouter();
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    logIn({ email: data.email.trim(), password: data.password.trim() });
-  };
-
-  return (
-    <div className="flex items-center justify-center h-full">
-      <form className="flex flex-col w-full h-full max-w-md shadow-lg max-h-[36rem] p-8 gap-4 items-center" onSubmit={handleSubmit(onSubmit)}>
-        <span className="my-auto text-xl font-semibold">LOG IN</span>
-        <div className="w-full mb-auto">
-          <div className="relative z-10 flex items-center w-full">
-            <input
-              className={`w-full h-12 px-4 border  border-zinc-200 focus:outline-zinc-700 ${emailCheck ? 'rounded-t-lg' : 'rounded-lg'}`}
-              {...register('email', { required: true })}
-            />
-            {!emailCheck && (
-              <span
-                className="absolute flex items-center justify-center w-8 h-8 border rounded-full cursor-pointer right-4"
-                onClick={() => setEmailCheck(!emailCheck)}
-              >
-                <AiOutlineSwapRight />
-              </span>
-            )}
-          </div>
-          <div className={`relative flex items-center transition-all duration-500 w-full ${emailCheck ? 'translate-y-0' : '-translate-y-full'}`}>
-            <input
-              className="w-full h-12 px-4 border rounded-b-lg border-zinc-200 focus:outline-zinc-700"
-              type="password"
-              {...register('password', { required: true })}
-            />
-            <button className="absolute flex items-center justify-center w-8 h-8 border rounded-full cursor-pointer right-4" type="submit" disabled={loading}>
-              {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : <AiOutlineSwapRight />}
-            </button>
-          </div>
-        </div>
-        <span className="text-sm">forgot password?</span>
-      </form>
-    </div>
-  );
-};
-
-export default LogIn;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const supabase = createServerSupabaseClient(context, supabaseEnv);
@@ -85,3 +32,61 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {},
     };
 };
+
+const LogIn: NextPage = () => {
+  const { logIn, loading } = useAuth();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
+
+  const [emailCheck, setEmailCheck] = useState(false);
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    logIn({ email: data.email.trim(), password: data.password.trim() });
+  };
+
+  return (
+    <div className="flex items-center justify-center h-full">
+      <form className="flex flex-col w-full h-full max-w-md shadow-lg max-h-[36rem] p-8 gap-4 items-center bg-beige" onSubmit={handleSubmit(onSubmit)}>
+        <span className="my-auto text-xl font-semibold text-brown">LOG IN</span>
+        <div className="w-full mb-auto">
+          <div className="relative z-10 flex items-center w-full">
+            <input
+              className={`w-full h-12 px-4 border border-brown/10 bg-orange/30 text-brown focus:outline-brown ${emailCheck ? 'rounded-t-lg' : 'rounded-lg'}`}
+              {...register('email', { required: true })}
+            />
+            {!emailCheck && (
+              <span
+                className="absolute flex items-center justify-center w-8 h-8 border rounded-full cursor-pointer border-brown right-4"
+                onClick={() => setEmailCheck(!emailCheck)}
+              >
+                <AiOutlineSwapRight className="text-brown" />
+              </span>
+            )}
+          </div>
+          <div className={`relative flex items-center transition-all duration-500 w-full ${emailCheck ? 'translate-y-0' : '-translate-y-full'}`}>
+            <input
+              className={`w-full h-12 px-4 bg-orange/30 focus:outline-brown border text-brown border-brown/10 ${emailCheck ? 'rounded-b-lg' : 'rounded-lg'}`}
+              type="password"
+              {...register('password', { required: true })}
+            />
+            <button
+              className="absolute flex items-center justify-center w-8 h-8 border rounded-full cursor-pointer border-brown right-4"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : <AiOutlineSwapRight />}
+            </button>
+          </div>
+        </div>
+        <span className="text-sm text-brown">forgot password?</span>
+      </form>
+    </div>
+  );
+};
+
+export default LogIn;
