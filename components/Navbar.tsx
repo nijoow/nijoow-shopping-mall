@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import useAuth from '../hooks/useAuth';
 import { Desktop, Mobile } from '../utils/mediaQuery';
@@ -7,39 +7,43 @@ import { Desktop, Mobile } from '../utils/mediaQuery';
 const Navbar = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const { session, logOut } = useAuth();
+
   return (
-    <nav className="w-full h-12 overflow-hidden text-zinc-100 bg-zinc-700">
-      <div className="flex items-center w-full h-full gap-20 mx-auto max-w-7xl ">
-        <div className="ml-4 text-lg font-medium cursor-pointer">nijoow shopping mall</div>
+    <nav className="relative w-full flex-none h-12 overflow-hidden bg-beige/40 text-brown">
+      <div className="flex items-center w-full h-full gap-20 mx-auto max-w-7xl px-4">
+        <Link href="/" className="text-lg font-medium cursor-pointer font-Insomnia">
+          nijoow vintage
+        </Link>
         <Desktop>
           <>
-            <ul className="flex gap-12 text-sm font-medium">
-              <li className="cursor-pointer">menu1</li>
-              <li className="cursor-pointer">menu2</li>
-              <li className="cursor-pointer">menu3</li>
+            <ul className="flex gap-12 text-sm font-medium ">
+              {' '}
+              <Link href="/shop">
+                <li className="cursor-pointer ">SHOP</li>
+              </Link>
             </ul>{' '}
             <div className="flex-auto"></div>
-            <ul className="flex gap-8 text-sm ">
+            <ul className="flex gap-8 text-sm font-medium ">
               {session ? (
                 <>
                   {' '}
-                  <Link href="/profile">
-                    <li className="flex items-center justify-center w-5 h-5 border rounded-full cursor-pointer border-zinc-200">
-                      <AiOutlineUser size={20} />
+                  <Link href="/user/profile">
+                    <li className="flex items-center justify-center w-5 h-5 border rounded-full cursor-pointer border-brown">
+                      <AiOutlineUser size={20} className="text-brown" />
                     </li>{' '}
                   </Link>{' '}
                   <div onClick={() => logOut()}>
-                    <li className="cursor-pointer">LogOut</li>{' '}
+                    <li className="cursor-pointer ">로그아웃</li>{' '}
                   </div>
                 </>
               ) : (
                 <>
                   {' '}
-                  <Link href="/login">
-                    <li className="cursor-pointer">Login</li>{' '}
+                  <Link href="/user/login">
+                    <li className="cursor-pointer ">로그인</li>{' '}
                   </Link>
-                  <Link href="/signup">
-                    <li className="cursor-pointer">SignUp</li>
+                  <Link href="/user/signup">
+                    <li className="cursor-pointer">회원가입</li>
                   </Link>
                 </>
               )}
