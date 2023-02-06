@@ -8,7 +8,7 @@ type Props = {
 
 export default function Layout(props: Props) {
   return (
-    <div className="flex flex-col w-full h-full min-h-screen bg-texture ">
+    <div className="flex flex-col w-full  min-h-screen bg-texture ">
       <NavBar />
       <div className="flex flex-col flex-auto w-full bg-brown/20 ">{props.children}</div>
       <Footer />

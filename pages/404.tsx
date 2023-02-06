@@ -3,9 +3,9 @@ import React from 'react';
 
 const NoutFound = () => {
   return (
-    <div className="max-w-7xl h-full flex flex-col items-center justify-center mx-auto">
-      <div className="gap-4 flex flex-col items-center justify-center  w-full p-24 bg-beige/30 rounded-lg">
-        <span className="ml-4 text-3xl font-medium cursor-pointer text-brown font-Insomnia">nijoow vintage</span>
+    <div className="max-w-7xl h-full flex flex-col items-center justify-center m-auto">
+      <div className="gap-4 flex flex-col items-center justify-center  w-full p-24 bg-beige/70 rounded-2xl">
+        <span className="text-3xl font-medium cursor-pointer text-brown font-Insomnia">nijoow vintage</span>
         <span className="text-center text-2xl text-brown">원하시는 페이지를 찾을 수 없습니다.</span>
         <span className="text-center text-brown">
           찾으려는 페이지의 주소가 잘못 입력되었거나,

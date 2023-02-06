@@ -17,29 +17,32 @@ const Navbar = () => {
         <Desktop>
           <>
             <ul className="flex gap-12 text-sm font-medium ">
-              <li className="cursor-pointer">SHOP</li>
+              {' '}
+              <Link href="/shop">
+                <li className="cursor-pointer ">SHOP</li>
+              </Link>
             </ul>{' '}
             <div className="flex-auto"></div>
-            <ul className="flex gap-8 text-sm ">
+            <ul className="flex gap-8 text-sm font-medium ">
               {session ? (
                 <>
                   {' '}
                   <Link href="/user/profile">
-                    <li className="flex items-center justify-center w-5 h-5 border rounded-full cursor-pointer border-zinc-200">
-                      <AiOutlineUser size={20} />
+                    <li className="flex items-center justify-center w-5 h-5 border rounded-full cursor-pointer border-brown">
+                      <AiOutlineUser size={20} className="text-brown" />
                     </li>{' '}
                   </Link>{' '}
                   <div onClick={() => logOut()}>
-                    <li className="cursor-pointer">로그아웃</li>{' '}
+                    <li className="cursor-pointer ">로그아웃</li>{' '}
                   </div>
                 </>
               ) : (
                 <>
                   {' '}
-                  <Link href="/login">
-                    <li className="cursor-pointer">로그인</li>{' '}
+                  <Link href="/user/login">
+                    <li className="cursor-pointer ">로그인</li>{' '}
                   </Link>
-                  <Link href="/signup">
+                  <Link href="/user/signup">
                     <li className="cursor-pointer">회원가입</li>
                   </Link>
                 </>
