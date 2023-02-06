@@ -5,6 +5,7 @@ import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 const useAuth = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -13,7 +14,7 @@ const useAuth = () => {
       setLoading(true);
       const { error } = await supabase.auth.signInWithPassword(payload);
       if (error) {
-        console.log(error);
+        setError('이메일/비밀번호를 확인해주세요');
       } else {
         router.push('/');
       }
@@ -23,7 +24,7 @@ const useAuth = () => {
       setLoading(false);
     }
   };
-  const logOut = async () => await supabase.auth.signOut().then(() => router.push('/login'));
+  const logOut = async () => await supabase.auth.signOut().then(() => router.push('/user/login'));
 
   const signUp = async (payload: { email: string; password: string }) => {
     try {
@@ -41,7 +42,7 @@ const useAuth = () => {
     }
   };
 
-  return { logIn, logOut, signUp, loading, session };
+  return { logIn, logOut, signUp, loading, session, error };
 };
 
 export default useAuth;
