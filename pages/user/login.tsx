@@ -1,12 +1,12 @@
 import { GetServerSideProps, NextPage, NextPageContext } from 'next';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLoading3Quarters, AiOutlineSwapRight } from 'react-icons/ai';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
-import useAuth from '../hooks/useAuth';
-import { supabaseEnv } from '../config/config';
+import useAuth from '../../hooks/useAuth';
+import { supabaseEnv } from '../../config/config';
 
 interface FormValues {
   email: string;
@@ -48,15 +48,20 @@ const LogIn: NextPage = () => {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     logIn({ email: data.email.trim(), password: data.password.trim() });
   };
-
+  const keyPressEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      if (!emailCheck) setEmailCheck(true);
+    }
+  };
   return (
-    <div className="flex items-center justify-center h-full">
-      <form className="flex flex-col w-full h-full max-w-md shadow-lg max-h-[36rem] p-8 gap-4 items-center bg-beige" onSubmit={handleSubmit(onSubmit)}>
-        <span className="my-auto text-xl font-semibold text-brown">LOG IN</span>
+    <>
+      <form className="flex flex-col w-full h-full max-w-md p-8 gap-4 items-center m-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+        <span className="text-3xl font-medium cursor-pointer text-brown font-Insomnia my-12">nijoow vintage</span>
         <div className="w-full mb-auto">
           <div className="relative z-10 flex items-center w-full">
             <input
-              className={`w-full h-12 px-4 border border-brown/10 bg-orange/30 text-brown focus:outline-brown ${emailCheck ? 'rounded-t-lg' : 'rounded-lg'}`}
+              className={`w-full h-12 px-4 border border-brown/30 text-brown focus:outline-brown ${emailCheck ? 'rounded-t-lg' : 'rounded-lg'}`}
+              onKeyDown={keyPressEnter}
               {...register('email', { required: true })}
             />
             {!emailCheck && (
@@ -70,8 +75,9 @@ const LogIn: NextPage = () => {
           </div>
           <div className={`relative flex items-center transition-all duration-500 w-full ${emailCheck ? 'translate-y-0' : '-translate-y-full'}`}>
             <input
-              className={`w-full h-12 px-4 bg-orange/30 focus:outline-brown border text-brown border-brown/10 ${emailCheck ? 'rounded-b-lg' : 'rounded-lg'}`}
+              className={`w-full h-12 px-4  focus:outline-brown border text-brown border-brown/30 ${emailCheck ? 'rounded-b-lg' : 'rounded-lg'}`}
               type="password"
+              onKeyDown={keyPressEnter}
               {...register('password', { required: true })}
             />
             <button
@@ -83,9 +89,9 @@ const LogIn: NextPage = () => {
             </button>
           </div>
         </div>
-        <span className="text-sm text-brown">forgot password?</span>
+        <span className="text-sm text-brown mt-6">forgot password?</span>
       </form>
-    </div>
+    </>
   );
 };
 
