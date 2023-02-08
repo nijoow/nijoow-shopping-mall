@@ -48,15 +48,7 @@ const Shop = () => {
           {clothesData
             .filter((value) => value.category.includes(category))
             .map((product) => (
-              <div className="flex flex-col items-center w-full col-span-3 gap-0.5" key={product.id}>
-                <div className="w-full after:pb-[100%] bg-mint flex justify-center items-center">
-                  <span className="text-3xl font-semibold text-orange">IMAGE</span>
-                </div>
-                <span className="w-full font-medium text-brown">
-                  {product.productName} {product.size ? `(${product.size})` : ''}
-                </span>
-                <span className="w-full text-orange font-semibold">{priceComma(product.price)}원</span>
-              </div>
+              <ProductListItem product={product} key={product.id} />
             ))}
         </div>
       </div>
