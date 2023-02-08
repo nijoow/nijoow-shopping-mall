@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
+import ProductListItem from '../../components/ProductListItem';
 import { clothesData } from '../../data/data';
 import { priceComma } from '../../utils/priceComma';
 
@@ -16,7 +17,7 @@ const Shop = () => {
   // },[])
   return (
     <>
-      <div className="flex w-full h-full py-4 px-4 mx-auto justify-center gap-12 bg-brown/70 text-beige">
+      <div className="flex w-full h-full py-4 px-4 mx-auto justify-center gap-12 bg-beige/30 text-beige">
         <span className={`cursor-pointer  ${category === '' ? 'font-medium text-mint' : 'font-normal text-beige'}`} onClick={() => setCategory('')}>
           전체 상품
         </span>
@@ -34,7 +35,7 @@ const Shop = () => {
         </span>
       </div>
       <div className="justify-end items-center flex w-full p-4 max-w-7xl mx-auto">
-        <div className="flex gap-2 items-center cursor-pointer">
+        <div className="flex gap-2 items-center cursor-pointer text-orange">
           <span>정렬기준</span>
           <AiFillCaretDown />
         </div>
