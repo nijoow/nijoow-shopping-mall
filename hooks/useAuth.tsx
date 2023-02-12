@@ -1,11 +1,19 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
-
+interface MessageProps {
+  type: 'default' | 'success' | 'error';
+  payload: string | null;
+}
+const MESSAGE_DEFAULT: MessageProps = {
+  type: 'default',
+  payload: null,
+};
 const useAuth = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
   const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState<MessageProps>(MESSAGE_DEFAULT);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -32,8 +40,9 @@ const useAuth = () => {
       const { error } = await supabase.auth.signUp(payload);
       if (error) {
         console.log(error);
+        setMessage({ type: 'error', payload: error.message });
       } else {
-        router.push('/');
+        setMessage({ type: 'success', payload: '회원가입 메일이 전송되었습니다' });
       }
     } catch (error) {
       console.log(error);
@@ -42,7 +51,7 @@ const useAuth = () => {
     }
   };
 
-  return { logIn, logOut, signUp, loading, session, error };
+  return { logIn, logOut, signUp, loading, session, error, message };
 };
 
 export default useAuth;
