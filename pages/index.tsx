@@ -1,15 +1,21 @@
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react';
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { NextPage } from 'next';
-import { useEffect } from 'react';
 import Image from 'next/image';
 import { clothesData } from '../data/data';
-import { priceComma } from '../utils/priceComma';
-const Home: NextPage = () => {
+import ProductListItem from '../components/ProductListItem';
+import { getPlaiceholder } from 'plaiceholder';
+
+export const getStaticProps = async () => {
+  const { base64, img } = await getPlaiceholder('/banner.jpg', { size: 10 });
+  return {
+    props: { blurDataURL: base64 },
+  };
+};
+
+const Home = ({ blurDataURL }: { blurDataURL: string }) => {
   return (
     <>
       <div className="relative w-full h-full min-h-screen">
-        <Image src={'/banner.jpg'} alt="banner" fill className="object-cover object-[0,40%] aspect-auto" />
+        <Image src={'/banner.jpg'} alt="banner" fill placeholder="blur" blurDataURL={blurDataURL} className="object-cover object-[0,40%] aspect-auto" />
         <div className="absolute inset-0 z-10 flex items-center justify-center w-full h-full text-white">
           <span className="z-20 text-8xl font-Insomnia text-beige">nijoow vintage</span>
           <span className="absolute z-10 translate-x-1 translate-y-1 text-brown/80 text-8xl font-Insomnia">nijoow vintage</span>
@@ -21,15 +27,7 @@ const Home: NextPage = () => {
           <span className="text-2xl font-semibold text-brown">최신 업로드</span>
         </div>
         {clothesData.map((product) => (
-          <div className="flex flex-col items-center w-full col-span-3 gap-0.5" key={product.id}>
-            <div className="w-full after:pb-[100%] bg-mint flex justify-center items-center">
-              <span className="text-3xl font-semibold text-orange">IMAGE</span>
-            </div>
-            <span className="w-full font-medium text-brown">
-              {product.productName} {product.size ? `(${product.size})` : ''}
-            </span>
-            <span className="w-full text-orange font-semibold">{priceComma(product.price)}원</span>
-          </div>
+          <ProductListItem product={product} key={product.id} />
         ))}
       </div>
     </>

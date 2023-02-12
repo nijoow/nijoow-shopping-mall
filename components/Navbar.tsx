@@ -9,7 +9,7 @@ const Navbar = () => {
   const { session, logOut } = useAuth();
 
   return (
-    <nav className="relative w-full flex-none h-12 overflow-hidden bg-beige/40 text-brown">
+    <nav className="relative w-full flex-none h-12 overflow-hidden bg-beige text-brown bg-blend-multiply bg-texture">
       <div className="flex items-center w-full h-full gap-20 mx-auto max-w-7xl px-4">
         <Link href="/" className="text-lg font-medium cursor-pointer font-Insomnia">
           nijoow vintage

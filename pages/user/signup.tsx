@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -11,7 +12,7 @@ interface FormValues {
   passwordCheck: string;
 }
 const SignUp: NextPage = () => {
-  const { signUp } = useAuth();
+  const { signUp, loading, message } = useAuth();
 
   const {
     register,
@@ -19,7 +20,6 @@ const SignUp: NextPage = () => {
     watch,
     formState: { errors },
   } = useForm<FormValues>({ mode: 'onChange' });
-  const [loading, setLoading] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     signUp({ email: data.email.trim(), password: data.password.trim() });
@@ -88,6 +88,16 @@ const SignUp: NextPage = () => {
           {loading ? <AiOutlineLoading3Quarters className="animate-spin" size={20} /> : '회원가입'}
         </button>
       </form>
+      {message.payload && (
+        <div className="fixed inset-0 w-screen h-screen flex items-center justify-center bg-black/50">
+          <div className="bg-beige rounded-2xl flex-col max-w-xs w-full flex items-center px-8 pt-12 pb-6 justify-center">
+            <span className="text-brown">{message.payload}</span>
+            <Link href="/" className=" w-32 h-12 mt-6 flex items-center justify-center font-medium rounded-lg text-beige bg-brown">
+              확인
+            </Link>
+          </div>
+        </div>
+      )}
     </>
   );
 };
