@@ -15,21 +15,20 @@ body,
 #__next {
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
 }
-#__next {
+html {
   overflow-y: scroll;
 }
-#__next::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 15px;
 }
-#__next::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: #6f5643;
   border-radius: 10px;
   background-clip: padding-box;
   border: 2px solid transparent;
   box-shadow: inset 0px 0px 2px #ece6c2;
 }
-#__next::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background-color: #ece6c2;
 }
