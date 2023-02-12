@@ -18,7 +18,6 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
   };
 };
 const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log(product);
   return (
     <div className="flex w-full h-full gap-4 px-4 py-8 mx-auto max-w-7xl pb-12">
       <div className="w-full after:pb-[100%] bg-mint flex justify-center items-center ">
