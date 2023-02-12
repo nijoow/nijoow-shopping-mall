@@ -13,25 +13,25 @@ interface FormValues {
   password: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const supabase = createServerSupabaseClient(context, supabaseEnv);
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const supabase = createServerSupabaseClient(context, supabaseEnv);
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+//   const {
+//     data: { session },
+//   } = await supabase.auth.getSession();
 
-  if (session?.user)
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    };
-  else
-    return {
-      props: {},
-    };
-};
+//   if (session?.user)
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     };
+//   else
+//     return {
+//       props: {},
+//     };
+// };
 
 const LogIn: NextPage = () => {
   const { logIn, loading } = useAuth();

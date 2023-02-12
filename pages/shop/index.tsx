@@ -4,12 +4,6 @@ import ProductListItem from '../../components/ProductListItem';
 import { clothesData } from '../../data/data';
 import { priceComma } from '../../utils/priceComma';
 
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
-}
-
 const Shop = () => {
   const [category, setCategory] = useState('');
   // useEffect(()=>{
