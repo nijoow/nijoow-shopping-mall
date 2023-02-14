@@ -11,7 +11,7 @@ const Shop = () => {
   // },[])
   return (
     <>
-      <div className="flex w-full h-full py-4 px-4 mx-auto justify-center gap-12 bg-beige/30 text-beige">
+      <div className="flex justify-center w-full h-full gap-12 px-4 py-4 mx-auto bg-beige/30 text-beige">
         <span className={`cursor-pointer  ${category === '' ? 'font-medium text-mint' : 'font-normal text-beige'}`} onClick={() => setCategory('')}>
           전체 상품
         </span>
@@ -28,17 +28,17 @@ const Shop = () => {
           악세사리
         </span>
       </div>
-      <div className="justify-end items-center flex w-full p-4 max-w-7xl mx-auto">
-        <div className="flex gap-2 items-center cursor-pointer text-orange">
+      <div className="flex items-center justify-end w-full p-4 mx-auto max-w-7xl">
+        <div className="flex items-center gap-2 cursor-pointer text-orange">
           <span>정렬기준</span>
           <AiFillCaretDown />
         </div>
       </div>
-      <div className="flex w-full h-full gap-4 px-4 mx-auto max-w-7xl pb-12">
-        {/* <div className="h-full w-48 flex flex-col gap-2">
+      <div className="flex w-full h-full gap-4 px-4 pb-12 mx-auto max-w-7xl">
+        {/* <div className="flex flex-col w-48 h-full gap-2">
           <span>필터</span>
         </div> */}
-        <div className="grid grid-cols-12 w-full gap-6">
+        <div className="grid w-full grid-cols-12 gap-6">
           {' '}
           {clothesData
             .filter((value) => value.category.includes(category))

@@ -12,7 +12,7 @@ export default function Layout(props: Props) {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-blend-multiply bg-brown bg-texture ">
+    <div className="flex flex-col w-full min-h-screen bg-blend-multiply bg-brown bg-texture">
       <Header />{' '}
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
