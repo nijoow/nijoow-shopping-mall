@@ -33,6 +33,7 @@ const Header = () => {
                   <Link href="/mypage/cart">
                     <AiOutlineShopping size={26} className="text-brown" />
                   </Link>
+                  <HeaderProfile />
                 </>
               ) : (
                 <>
