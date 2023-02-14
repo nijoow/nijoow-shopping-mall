@@ -1,16 +1,17 @@
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineShopping, AiOutlineHeart } from 'react-icons/ai';
 import useAuth from '../hooks/useAuth';
 import { Desktop, Mobile } from '../utils/mediaQuery';
+import HeaderProfile from './HeaderProfile';
 
-const Navbar = () => {
+const Header = () => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const { session, logOut } = useAuth();
-
   return (
-    <nav className="relative w-full flex-none h-12 overflow-hidden bg-beige text-brown bg-blend-multiply bg-texture">
-      <div className="flex items-center w-full h-full gap-20 mx-auto max-w-7xl px-4">
+    <nav className="relative flex-none w-full h-12 bg-beige text-brown bg-blend-multiply bg-texture">
+      <div className="flex items-center w-full h-full gap-20 px-4 mx-auto max-w-7xl">
         <Link href="/" className="text-lg font-medium cursor-pointer font-Insomnia">
           nijoow vintage
         </Link>
@@ -23,18 +24,15 @@ const Navbar = () => {
               </Link>
             </ul>{' '}
             <div className="flex-auto"></div>
-            <ul className="flex gap-8 text-sm font-medium ">
+            <ul className="flex items-center gap-8 text-sm font-medium ">
               {session ? (
                 <>
-                  {' '}
-                  <Link href="/user/profile">
-                    <li className="flex items-center justify-center w-5 h-5 border rounded-full cursor-pointer border-brown">
-                      <AiOutlineUser size={20} className="text-brown" />
-                    </li>{' '}
-                  </Link>{' '}
-                  <div onClick={() => logOut()}>
-                    <li className="cursor-pointer ">로그아웃</li>{' '}
-                  </div>
+                  <Link href="/mypage/favorites">
+                    <AiOutlineHeart size={24} className="text-brown" />
+                  </Link>
+                  <Link href="/mypage/cart">
+                    <AiOutlineShopping size={26} className="text-brown" />
+                  </Link>
                 </>
               ) : (
                 <>
@@ -64,4 +62,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;
