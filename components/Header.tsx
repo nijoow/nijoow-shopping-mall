@@ -2,13 +2,16 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { AiOutlineUser, AiOutlineShopping, AiOutlineHeart } from 'react-icons/ai';
+import { useRecoilState } from 'recoil';
 import useAuth from '../hooks/useAuth';
+import { cartState } from '../state/cart';
 import { Desktop, Mobile } from '../utils/mediaQuery';
 import HeaderProfile from './HeaderProfile';
 
 const Header = () => {
+  const [cart] = useRecoilState(cartState);
   const [openSidebar, setOpenSidebar] = useState(false);
-  const { session, logOut } = useAuth();
+  const { session } = useAuth();
   return (
     <nav className="relative flex-none w-full h-12 bg-beige text-brown bg-blend-multiply bg-texture">
       <div className="flex items-center w-full h-full gap-20 px-4 mx-auto max-w-7xl">
@@ -30,8 +33,11 @@ const Header = () => {
                   <Link href="/mypage/favorites">
                     <AiOutlineHeart size={24} className="text-brown" />
                   </Link>
-                  <Link href="/mypage/cart">
-                    <AiOutlineShopping size={26} className="text-brown" />
+                  <Link href="/mypage/cart" className="relative">
+                    <AiOutlineShopping size={26} className="text-brown" />{' '}
+                    <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -top-0.5 -right-2 bg-brown">
+                      <span className="text-[10px] text-beige">{cart.length}</span>
+                    </div>
                   </Link>
                   <HeaderProfile />
                 </>
