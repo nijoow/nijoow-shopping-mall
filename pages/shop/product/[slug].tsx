@@ -77,7 +77,7 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
             <button
               className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm border-orange text-orange"
               type="button"
-              onClick={() => addCart(product?.id)}
+              onClick={() => product && addCart(product.id)}
             >
               장바구니 담기
             </button>
