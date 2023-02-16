@@ -6,10 +6,12 @@ import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { supabaseEnv } from '../config/config';
+import { RecoilRoot } from 'recoil';
 
 function MyApp({
   Component,
   pageProps,
+  router,
 }: AppProps<{
   initialSession: Session;
 }>) {
@@ -23,6 +25,8 @@ function MyApp({
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <RecoilRoot>
+      </RecoilRoot>
     </SessionContextProvider>
   );
 }
