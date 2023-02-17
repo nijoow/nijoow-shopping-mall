@@ -1,6 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
-import NavBar from './Navbar';
+import Header from './Header';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 
@@ -12,11 +12,11 @@ export default function Layout(props: Props) {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col w-full min-h-screen bg-blend-multiply bg-brown bg-texture ">
-      <NavBar />{' '}
+    <div className="flex flex-col w-full min-h-screen bg-blend-multiply bg-brown bg-texture">
+      <Header />{' '}
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          className="flex flex-col flex-auto w-full relative"
+          className="relative flex flex-col flex-auto w-full"
           key={router.asPath}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

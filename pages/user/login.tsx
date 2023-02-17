@@ -60,7 +60,10 @@ const LogIn: NextPage = () => {
         <div className="w-full mb-auto">
           <div className="relative z-10 flex items-center w-full">
             <input
-              className={`w-full h-12 px-4 border border-brown/30 text-brown focus:outline-brown ${emailCheck ? 'rounded-t-lg' : 'rounded-lg'}`}
+              className={`w-full h-12 px-4 border border-brown/30 placeholder:text-ocher/50 text-brown focus:outline-brown ${
+                emailCheck ? 'rounded-t-lg' : 'rounded-lg'
+              }`}
+              placeholder="이메일을 입력해주세요"
               onKeyDown={keyPressEnter}
               {...register('email', { required: true })}
             />
@@ -75,7 +78,10 @@ const LogIn: NextPage = () => {
           </div>
           <div className={`relative flex items-center transition-all duration-500 w-full ${emailCheck ? 'translate-y-0' : '-translate-y-full'}`}>
             <input
-              className={`w-full h-12 px-4  focus:outline-brown border text-brown border-brown/30 ${emailCheck ? 'rounded-b-lg' : 'rounded-lg'}`}
+              className={`w-full h-12 px-4 placeholder:text-ocher/50 focus:outline-brown border text-brown border-brown/30 ${
+                emailCheck ? 'rounded-b-lg' : 'rounded-lg'
+              }`}
+              placeholder="비밀번호를 입력해주세요"
               type="password"
               onKeyDown={keyPressEnter}
               {...register('password', { required: true })}
@@ -89,7 +95,7 @@ const LogIn: NextPage = () => {
             </button>
           </div>
         </div>
-        <span className="text-sm text-brown mt-6">forgot password?</span>
+        <span className="text-sm text-brown mt-6">비밀번호를 잊으셨나요?</span>
       </form>
     </>
   );
