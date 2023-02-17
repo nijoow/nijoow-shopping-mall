@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import ProductListItem from '../../components/ProductListItem';
 import { clothesData } from '../../data/data';
@@ -7,14 +7,41 @@ import { priceComma } from '../../utils/priceComma';
 
 const Cart = () => {
   const [cart, setCart] = useRecoilState(cartState);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<number[]>([]);
+  const [allSelected, setAllSelected] = useState(false);
+
+  useEffect(() => {
+    if (cart.length > 0 && cart.length === selected.length) {
+      setAllSelected(true);
+    } else {
+      setAllSelected(false);
+    }
+  }, [cart, selected]);
+
+  const selectItem = (value: number, isChecked: boolean) => {
+    if (isChecked) {
+      setSelected([...selected, value]);
+    } else {
+      setSelected([...selected.filter((item) => item !== value)]);
+    }
+  };
+
+  const selectAllItem = () => {
+    if (!allSelected) {
+      setSelected([...cart.map((item) => item.id)]);
+    } else {
+      setSelected([]);
+    }
+  };
 
   const deleteCart = (targetIdList: number[]) => {
     setCart([...cart.filter((item) => !targetIdList.includes(item.id))]);
   };
+
   const deleteSelectedCart = () => {
     deleteCart(selected);
   };
+
   return (
     <div className="flex flex-col flex-auto w-full gap-4 px-4 py-4 mx-auto max-w-7xl">
       <span className="text-xl font-medium text-beige">장바구니</span>
@@ -22,7 +49,14 @@ const Cart = () => {
         <thead>
           <tr className="border-y border-ocher">
             <th className="p-3">
-              <input type="checkbox" />
+              <input
+                name="all"
+                id="all"
+                type="checkbox"
+                checked={allSelected}
+                onChange={() => selectAllItem()}
+                className="w-4 h-4 bg-beige rounded-sm checked:text-mint focus:ring-0 focus:ring-offset-0 cursor-pointer"
+              />
             </th>
             <th className="py-3 pr-3">전체 ({cart.length}개)</th>
             {['상품명(옵션)', '상품번호', '판매가격', '적립금', '주문관리', '배송비'].map((element) => (
@@ -39,7 +73,13 @@ const Cart = () => {
                 {' '}
                 <td className="p-3">
                   <div className="flex items-center justify-center">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      value={product.id}
+                      checked={selected.includes(product.id)}
+                      onChange={(e) => selectItem(Number(e.target.value), e.target.checked)}
+                      className="w-4 h-4 bg-beige rounded-sm checked:text-mint focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                    />
                   </div>
                 </td>
                 <td className="py-3 pr-3">
