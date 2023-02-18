@@ -1,11 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import ProductListItem from '../../components/ProductListItem';
-import { clothesData } from '../../data/data';
 import { cartState } from '../../state/cart';
 import { priceComma } from '../../utils/priceComma';
 
-const Cart = () => {
+const Carts = () => {
   const [cart, setCart] = useRecoilState(cartState);
   const [selected, setSelected] = useState<number[]>([]);
   const [allSelected, setAllSelected] = useState(false);
@@ -69,7 +67,7 @@ const Cart = () => {
         <tbody>
           {cart.length > 0 ? (
             cart.map((product, index) => (
-              <tr key={product.id}>
+              <tr key={product.id} className="border-b border-ocher/50">
                 {' '}
                 <td className="p-3">
                   <div className="flex items-center justify-center">
@@ -136,4 +134,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Carts;
