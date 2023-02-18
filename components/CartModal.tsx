@@ -24,7 +24,7 @@ const CartModal = ({ setOpenCartModal }: { setOpenCartModal: Dispatch<SetStateAc
           className="px-4 py-2 rounded-md border-brown border-2 text-brown w-full"
           type="button"
           onClick={() => {
-            router.push('/mypage/cart');
+            router.push('/mypage/carts');
           }}
         >
           장바구니 보기

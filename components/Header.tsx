@@ -33,7 +33,7 @@ const Header = () => {
                   <Link href="/mypage/favorites">
                     <AiOutlineHeart size={24} className="text-brown" />
                   </Link>
-                  <Link href="/mypage/cart" className="relative">
+                  <Link href="/mypage/carts" className="relative">
                     <AiOutlineShopping size={26} className="text-brown" />{' '}
                     <div className="absolute flex items-center justify-center w-4 h-4 rounded-full -top-0.5 -right-2 bg-brown">
                       <span className="text-[10px] text-beige">{cart.length}</span>
