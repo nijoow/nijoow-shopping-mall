@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-const NoutFound = () => {
+const NotFound = () => {
   return (
     <div className="max-w-7xl h-full flex flex-col items-center justify-center m-auto">
       <div className="gap-4 flex flex-col items-center justify-center  w-full p-24 bg-beige/70 rounded-2xl">
@@ -19,4 +19,4 @@ const NoutFound = () => {
   );
 };
 
-export default NoutFound;
+export default NotFound;
