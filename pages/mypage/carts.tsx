@@ -43,7 +43,7 @@ const Carts = () => {
   return (
     <div className="flex flex-col flex-auto w-full gap-4 px-4 py-4 mx-auto max-w-7xl">
       <span className="text-xl font-medium text-beige">장바구니</span>
-      <table className="table w-full table-auto text-beige">
+      <table className="table w-full table-auto text-beige ">
         <thead>
           <tr className="border-y border-ocher">
             <th className="p-3">
@@ -127,7 +127,8 @@ const Carts = () => {
           선택 삭제
         </button>
       )}
-      <button type="button" className="px-24 py-4 m-auto text-xl font-medium rounded-md bg-orange text-beige max-w-fit">
+      <div className="flex-auto"></div>
+      <button type="button" className="px-24 py-4 mx-auto my-4 text-xl font-medium rounded-md bg-orange text-beige max-w-fit">
         주문 하기{' '}
       </button>{' '}
     </div>
