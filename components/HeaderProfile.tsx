@@ -18,7 +18,7 @@ const HeaderProfile = () => {
     >
       <AiOutlineUser size={20} className="text-brown" />
       <motion.div
-        variants={{ visible: { opacity: 1, translateY: 4 }, hidden: { opacity: 0, scale: 0.5, originY: 0 } }}
+        variants={{ visible: { opacity: 1, scale: 1, translateY: 4 }, hidden: { opacity: 0, scale: 0.5, originY: 0 } }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
         animate={openProfile ? 'visible' : 'hidden'}
         className="absolute z-20 flex flex-col w-24 gap-1 p-3 rounded-lg shadow-md top-full bg-brown/95 text-beige bg-blend-multiply bg-texture"
