@@ -1,13 +1,12 @@
 import { atom } from 'recoil';
+import { Product } from '../types/types';
 
-interface Cart {
-  productName: string;
-  price: number;
-  size: string | null;
-  category: string;
-  id: number;
-}
-export const cartState = atom<Cart[]>({
+export const cartState = atom<Product[]>({
   key: 'cart',
+  default: [],
+});
+
+export const favoritesState = atom<Product[]>({
+  key: 'favorites',
   default: [],
 });
