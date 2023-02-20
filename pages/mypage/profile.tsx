@@ -28,14 +28,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const Profile = ({ email }: { email: string }) => {
   return (
     <div className="flex items-center justify-center h-full">
-      <div className="flex flex-col w-full h-full max-w-7xl py-8 px-4 gap-8">
+      <div className="flex flex-col w-full h-full gap-8 px-4 py-8 max-w-7xl">
         <div className="flex flex-col gap-1">
-          <span className="w-12 h-12 rounded-full bg-mint flex mx-auto items-center justify-center">
+          <span className="flex items-center justify-center w-12 h-12 mx-auto rounded-full bg-mint">
             <AiOutlineUser size={30} className="text-brown" />
           </span>
-          <span className="text-beige font-medium mx-auto">{email}</span>
+          <span className="mx-auto font-medium text-beige">{email}</span>
         </div>
-        <div className="flex gap-2 max-w-lg mx-auto w-full">
+        <div className="flex w-full max-w-lg gap-2 mx-auto">
           {[
             { value: 0, title: '전체' },
             { value: 0, title: '입금/결제' },
@@ -44,7 +44,7 @@ const Profile = ({ email }: { email: string }) => {
             { value: 0, title: '구매확정' },
           ].map((element) => (
             <div className="flex flex-col justify-center items-center  bg-orange w-1/5 py-1.5 rounded-md shadow-md cursor-pointer" key={element.title}>
-              <span className="font-semibold text-lg text-beige">{element.value}</span>
+              <span className="text-lg font-semibold text-beige">{element.value}</span>
               <span className="text-sm text-beige">{element.title}</span>
             </div>
           ))}
@@ -62,8 +62,8 @@ const Profile = ({ email }: { email: string }) => {
           <tbody>
             <td className="p-3 ">
               <div className="flex gap-2">
-                <div className="w-24 h-24 flex items-center justify-center bg-mint cursor-pointer text-orange font-semibold">상품이미지</div>
-                <div className="flex flex-col h-full my-auto flex-auto gap-2 ">
+                <div className="flex items-center justify-center w-24 h-24 font-semibold cursor-pointer bg-mint text-orange">상품이미지</div>
+                <div className="flex flex-col flex-auto h-full gap-2 my-auto ">
                   <span className="font-medium cursor-pointer text-beige">상품명</span>
                   <span className="text-ocher">상품 옵션</span>
                 </div>

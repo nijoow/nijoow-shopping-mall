@@ -2,11 +2,12 @@ import Link from 'next/link';
 import router from 'next/router';
 import { InferGetStaticPropsType } from 'next/types';
 import React, { useRef, useState } from 'react';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
 import CartModal from '../../../components/CartModal';
 import { clothesData } from '../../../data/data';
 import useAuth from '../../../hooks/useAuth';
-import { cartState } from '../../../state/cart';
+import { cartState, favoritesState } from '../../../state/cart';
 import { priceComma } from '../../../utils/priceComma';
 
 export const getStaticPaths = async () => {
@@ -27,6 +28,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
 const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { session } = useAuth();
   const [cart, setCart] = useRecoilState(cartState);
+  const [favorites, setFavorites] = useRecoilState(favoritesState);
   const sectionRef = useRef<null[] | HTMLDivElement[]>([]);
   const [openCartModal, setOpenCartModal] = useState(false);
 
@@ -44,6 +46,14 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
     } else {
       product && setCart([...cart, product]);
       setOpenCartModal(true);
+    }
+  };
+
+  const toggleFavorites = (productId: number) => {
+    if (favorites.find((item) => item.id === productId)) {
+      setFavorites(favorites.filter((item) => item.id !== productId));
+    } else {
+      product && setFavorites([...favorites, product]);
     }
   };
 
@@ -78,10 +88,11 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
               <span className="text-xl font-medium text-beige">총 상품금액</span>{' '}
               <span className="text-xl font-medium text-ocher">{product && priceComma(product.price)}원</span>
             </div>{' '}
-            <button className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-brown" type="button">
-              바로 구매
-            </button>
             <div className="flex w-full gap-2 ">
+              {' '}
+              <button className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige" type="button">
+                바로 구매
+              </button>
               <button
                 className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm border-orange text-orange"
                 type="button"
@@ -94,8 +105,12 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
               >
                 장바구니 담기
               </button>
-              <button className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm border-orange text-orange" type="button">
-                관심상품 등록
+              <button
+                className="flex items-center justify-center w-fit p-3 font-medium border-2 rounded-sm border-orange text-orange"
+                type="button"
+                onClick={() => product && toggleFavorites(product?.id)}
+              >
+                {product && favorites.find((item) => item.id === product.id) ? <AiFillHeart size={30} /> : <AiOutlineHeart size={30} />}
               </button>
             </div>
           </div>

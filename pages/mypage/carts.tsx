@@ -1,11 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import ProductListItem from '../../components/ProductListItem';
-import { clothesData } from '../../data/data';
 import { cartState } from '../../state/cart';
 import { priceComma } from '../../utils/priceComma';
 
-const Cart = () => {
+const Carts = () => {
   const [cart, setCart] = useRecoilState(cartState);
   const [selected, setSelected] = useState<number[]>([]);
   const [allSelected, setAllSelected] = useState(false);
@@ -45,7 +43,7 @@ const Cart = () => {
   return (
     <div className="flex flex-col flex-auto w-full gap-4 px-4 py-4 mx-auto max-w-7xl">
       <span className="text-xl font-medium text-beige">장바구니</span>
-      <table className="table w-full table-auto text-beige">
+      <table className="table w-full table-auto text-beige ">
         <thead>
           <tr className="border-y border-ocher">
             <th className="p-3">
@@ -69,7 +67,7 @@ const Cart = () => {
         <tbody>
           {cart.length > 0 ? (
             cart.map((product, index) => (
-              <tr key={product.id}>
+              <tr key={product.id} className="border-b border-ocher/50">
                 {' '}
                 <td className="p-3">
                   <div className="flex items-center justify-center">
@@ -129,11 +127,12 @@ const Cart = () => {
           선택 삭제
         </button>
       )}
-      <button type="button" className="px-24 py-4 m-auto text-xl font-medium rounded-md bg-orange text-beige max-w-fit">
+      <div className="flex-auto"></div>
+      <button type="button" className="px-24 py-4 mx-auto my-4 text-xl font-medium rounded-md bg-orange text-beige max-w-fit">
         주문 하기{' '}
       </button>{' '}
     </div>
   );
 };
 
-export default Cart;
+export default Carts;
