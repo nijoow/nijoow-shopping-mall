@@ -10,7 +10,7 @@ import FullScreenLoading from '../components/FullScreenLoading';
 import { Router } from 'next/router';
 import { RecoilRoot } from 'recoil';
 
-const ssrRoute = ['/mypage', '/product'];
+const ssrRoute = ['/profile'];
 
 function MyApp({
   Component,
