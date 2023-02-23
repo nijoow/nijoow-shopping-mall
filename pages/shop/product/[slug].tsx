@@ -90,7 +90,19 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
             </div>{' '}
             <div className="flex w-full gap-2 ">
               {' '}
-              <button className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige" type="button">
+              <button
+                className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige"
+                type="button"
+                onClick={() => {
+                  if (!session) {
+                    alert('로그인이 필요합니다');
+                    router.push('/user/login');
+                  } else {
+                    product && addCart(product.id);
+                    router.push({ pathname: '/order', query: { id: product?.id } });
+                  }
+                }}
+              >
                 바로 구매
               </button>
               <button
@@ -100,7 +112,9 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
                   if (!session) {
                     alert('로그인이 필요합니다');
                     router.push('/user/login');
-                  } else product && addCart(product.id);
+                  } else {
+                    product && addCart(product.id);
+                  }
                 }}
               >
                 장바구니 담기
