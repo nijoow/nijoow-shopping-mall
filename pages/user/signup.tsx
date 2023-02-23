@@ -10,7 +10,7 @@ interface FormValues {
   password: string;
   passwordCheck: string;
 }
-const SignUp: NextPage = () => {
+const SignUpPage: NextPage = () => {
   const { signUp, loading, message } = useAuth();
   const {
     register,
@@ -100,4 +100,4 @@ const SignUp: NextPage = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

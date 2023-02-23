@@ -33,7 +33,7 @@ interface FormValues {
 //     };
 // };
 
-const LogIn: NextPage = () => {
+const LogInPage: NextPage = () => {
   const { logIn, loading } = useAuth();
 
   const {
@@ -101,4 +101,4 @@ const LogIn: NextPage = () => {
   );
 };
 
-export default LogIn;
+export default LogInPage;

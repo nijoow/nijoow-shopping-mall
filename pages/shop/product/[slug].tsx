@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import router from 'next/router';
-import { InferGetStaticPropsType } from 'next/types';
+import { InferGetStaticPropsType, NextPage } from 'next/types';
 import React, { useRef, useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
@@ -25,7 +25,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
   };
 };
 
-const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { session } = useAuth();
   const [cart, setCart] = useRecoilState(cartState);
   const [favorites, setFavorites] = useRecoilState(favoritesState);
@@ -194,4 +194,4 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
   );
 };
 
-export default Product;
+export default ProductPage;

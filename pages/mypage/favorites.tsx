@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import ProductListItem from '../../components/ProductListItem';
 import { favoritesState } from '../../state/cart';
 
-const favorites = () => {
+const FavoritesPage = () => {
   const [favorites, setFavorites] = useRecoilState(favoritesState);
 
   return (
@@ -22,4 +22,4 @@ const favorites = () => {
   );
 };
 
-export default favorites;
+export default FavoritesPage;

@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { cartState } from '../../state/cart';
 import { priceComma } from '../../utils/priceComma';
 
-const Carts = () => {
+const CartsPage = () => {
   const [cart, setCart] = useRecoilState(cartState);
   const [selected, setSelected] = useState<number[]>([]);
   const [allSelected, setAllSelected] = useState(false);
@@ -135,4 +135,4 @@ const Carts = () => {
   );
 };
 
-export default Carts;
+export default CartsPage;

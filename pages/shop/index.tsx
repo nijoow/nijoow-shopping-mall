@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 import ProductListItem from '../../components/ProductListItem';
@@ -16,7 +17,7 @@ const filterStatus = {
   HighToLow: '높은 가격순',
 };
 
-const Shop = () => {
+const ShopPage: NextPage = () => {
   const [clothesList, setClothesList] = useState([...clothesData]);
   const [category, setCategory] = useState('');
   const [openFilter, setOpenFilter] = useState(false);
@@ -97,4 +98,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopPage;

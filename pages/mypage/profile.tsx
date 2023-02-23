@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 };
 
-const Profile = ({ email }: { email: string }) => {
+const ProfilePage = ({ email }: { email: string }) => {
   return (
     <div className="flex items-center justify-center h-full">
       <div className="flex flex-col w-full h-full gap-8 px-4 py-8 max-w-7xl">
@@ -94,4 +94,4 @@ const Profile = ({ email }: { email: string }) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
