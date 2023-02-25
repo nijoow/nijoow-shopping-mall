@@ -55,8 +55,8 @@ const LogInPage: NextPage = () => {
   };
   return (
     <>
-      <form className="flex flex-col w-full h-full max-w-md p-8 gap-4 items-center m-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
-        <span className="text-3xl font-medium cursor-pointer text-brown font-Insomnia my-12">nijoow vintage</span>
+      <form className="flex flex-col items-center w-full h-full max-w-md gap-4 p-8 m-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+        <span className="my-12 text-3xl font-medium cursor-pointer text-brown font-Insomnia">nijoow vintage</span>
         <div className="w-full mb-auto">
           <div className="relative z-10 flex items-center w-full">
             <input
@@ -95,7 +95,7 @@ const LogInPage: NextPage = () => {
             </button>
           </div>
         </div>
-        <span className="text-sm text-brown mt-6">비밀번호를 잊으셨나요?</span>
+        <span className="mt-6 text-sm text-brown">비밀번호를 잊으셨나요?</span>
       </form>
     </>
   );

@@ -131,7 +131,7 @@ const CartsPage = () => {
       <div className="flex-auto"></div>
       <button
         type="button"
-        className="px-24 py-4 mx-auto my-4 text-xl font-medium rounded-md bg-orange text-beige max-w-fit"
+        className="px-24 py-4 mx-auto my-4 text-lg font-medium rounded-md bg-orange text-beige max-w-fit"
         onClick={() => {
           if (selected.length === 0) {
             alert('주문할 상품을 선택해주세요');
