@@ -3744,6 +3744,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-daum-postcode@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "react-daum-postcode@npm:3.1.1"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: a7097f7b57d4d4f7e5e96215c041986b6f2e1daa3fd413e7dae9877c726fe0991e3f4fbff44091e77ac461cf7bd8204db99534702cd7d8f1e52c002d144d1ae8
+  languageName: node
+  linkType: hard
+
 "react-dom@npm:18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
@@ -3993,6 +4002,7 @@ __metadata:
     postcss: ^8.4.18
     prettier: latest
     react: 18.2.0
+    react-daum-postcode: ^3.1.1
     react-dom: 18.2.0
     react-hook-form: ^7.42.1
     react-icons: ^4.7.1
