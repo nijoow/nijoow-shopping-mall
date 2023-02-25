@@ -140,7 +140,7 @@ const CartsPage = () => {
           router.push({ pathname: '/order', query: { id: selected } });
         }}
       >
-        주문 하기{' '}
+        주문하기{' '}
       </button>{' '}
     </div>
   );
