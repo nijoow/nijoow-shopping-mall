@@ -54,7 +54,7 @@ const CartsPage = () => {
                 type="checkbox"
                 checked={allSelected}
                 onChange={() => selectAllItem()}
-                className="w-4 h-4 bg-beige rounded-sm checked:text-mint focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                className="w-4 h-4 rounded-sm cursor-pointer bg-beige checked:text-mint focus:ring-0 focus:ring-offset-0"
               />
             </th>
             <th className="py-3 pr-3">전체 ({cart.length}개)</th>
@@ -77,7 +77,7 @@ const CartsPage = () => {
                       value={product.id}
                       checked={selected.includes(product.id)}
                       onChange={(e) => selectItem(Number(e.target.value), e.target.checked)}
-                      className="w-4 h-4 bg-beige rounded-sm checked:text-mint focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                      className="w-4 h-4 rounded-sm cursor-pointer bg-beige checked:text-mint focus:ring-0 focus:ring-offset-0"
                     />
                   </div>
                 </td>

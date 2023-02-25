@@ -120,7 +120,7 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
                 장바구니 담기
               </button>
               <button
-                className="flex items-center justify-center w-fit p-3 font-medium border-2 rounded-sm border-orange text-orange"
+                className="flex items-center justify-center p-3 font-medium border-2 rounded-sm w-fit border-orange text-orange"
                 type="button"
                 onClick={() => product && toggleFavorites(product?.id)}
               >
