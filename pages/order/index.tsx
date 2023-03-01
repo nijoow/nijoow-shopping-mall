@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { cartState } from '../../state/cart';
+import { cartState } from '../../state/state';
 import { Product } from '../../types/types';
 import { priceComma } from '../../utils/priceComma';
 
@@ -155,10 +155,10 @@ const OrderPage = () => {
       <div className="flex-auto"></div>
       <button
         type="button"
-        className="px-24 py-4 mx-auto my-4 text-lg font-medium rounded-md bg-orange text-beige max-w-fit"
+        className="px-24 py-4 mx-auto my-4 text-lg font-medium rounded-md bg-orange text-beige max-w-fit flex items-center gap-3"
         onClick={() => {
           alert('결제에 성공하였습니다');
-          router.push({ pathname: '/', query: { id: id } });
+          router.push({ pathname: '/mypage/profile' });
         }}
       >
         <span className="text-2xl font-bold">{total.totalPayment && priceComma(total.totalPayment)} 원</span> 결제하기{' '}

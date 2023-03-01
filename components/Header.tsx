@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineUser, AiOutlineShopping, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
 import useAuth from '../hooks/useAuth';
-import { cartState } from '../state/cart';
+import { cartState } from '../state/state';
 import { Desktop, Mobile } from '../utils/mediaQuery';
 import HeaderProfile from './HeaderProfile';
 

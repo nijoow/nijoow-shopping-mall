@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
-import { favoritesState } from '../state/cart';
+import { favoritesState } from '../state/state';
 import { Product } from '../types/types';
 import { priceComma } from '../utils/priceComma';
 

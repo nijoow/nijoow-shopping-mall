@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import ProductListItem from '../../components/ProductListItem';
-import { favoritesState } from '../../state/cart';
+import { favoritesState } from '../../state/state';
 
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useRecoilState(favoritesState);

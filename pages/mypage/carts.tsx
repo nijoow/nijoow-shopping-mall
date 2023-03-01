@@ -1,7 +1,7 @@
 import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { cartState } from '../../state/cart';
+import { cartState } from '../../state/state';
 import { priceComma } from '../../utils/priceComma';
 
 const CartsPage = () => {

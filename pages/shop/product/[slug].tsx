@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 import CartModal from '../../../components/CartModal';
 import { clothesData } from '../../../data/data';
 import useAuth from '../../../hooks/useAuth';
-import { cartState, favoritesState } from '../../../state/cart';
+import { cartState, favoritesState } from '../../../state/state';
 import { priceComma } from '../../../utils/priceComma';
 
 export const getStaticPaths = async () => {
