@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED=false next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -15,11 +15,13 @@
     "next": "latest",
     "plaiceholder": "^2.5.0",
     "react": "18.2.0",
+    "react-daum-postcode": "^3.1.1",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.42.1",
     "react-icons": "^4.7.1",
     "react-responsive": "^9.0.2",
     "recoil": "^0.7.6",
+    "recoil-persist": "^4.2.0",
     "sharp": "^0.31.3"
   },
   "devDependencies": {

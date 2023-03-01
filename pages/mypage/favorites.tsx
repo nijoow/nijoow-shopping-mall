@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
 import ProductListItem from '../../components/ProductListItem';
-import { favoritesState } from '../../state/cart';
+import { favoritesState } from '../../state/state';
 
-const favorites = () => {
+const FavoritesPage = () => {
   const [favorites, setFavorites] = useRecoilState(favoritesState);
 
   return (
@@ -22,4 +22,4 @@ const favorites = () => {
   );
 };
 
-export default favorites;
+export default FavoritesPage;

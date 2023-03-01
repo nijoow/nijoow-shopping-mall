@@ -1,9 +1,13 @@
 import { GetServerSideProps } from 'next/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import useAuth from '../../hooks/useAuth';
 import { supabaseEnv } from '../../config/config';
 import { AiOutlineUser } from 'react-icons/ai';
+import { useRecoilState } from 'recoil';
+import { totalOrderListState } from '../../state/state';
+import { priceComma } from '../../utils/priceComma';
+import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const supabase = createServerSupabaseClient(context, supabaseEnv);
@@ -25,7 +29,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 };
 
-const Profile = ({ email }: { email: string }) => {
+const ProfilePage = ({ email }: { email: string }) => {
+  const [totalOrderList, setTotalOrderList] = useRecoilState(totalOrderListState);
+  const beforeShipping = totalOrderList.filter((order) => order.status === 'BeforeShipping');
+  const duringShipping = totalOrderList.filter((order) => order.status === 'DuringShipping');
+  const afterShipping = totalOrderList.filter((order) => order.status === 'AfterShipping');
+  const purchaseConfirm = totalOrderList.filter((order) => order.status === 'PurchaseConfirm');
+  const [status, setStatus] = useState('');
   return (
     <div className="flex items-center justify-center h-full">
       <div className="flex flex-col w-full h-full gap-8 px-4 py-8 max-w-7xl">
@@ -37,13 +47,17 @@ const Profile = ({ email }: { email: string }) => {
         </div>
         <div className="flex w-full max-w-lg gap-2 mx-auto">
           {[
-            { value: 0, title: '전체' },
-            { value: 0, title: '입금/결제' },
-            { value: 0, title: '배송중' },
-            { value: 0, title: '배송완료' },
-            { value: 0, title: '구매확정' },
+            { value: totalOrderList.length, title: '전체', status: '' },
+            { value: beforeShipping.length, title: '배송전', status: 'BeforeShipping' },
+            { value: duringShipping.length, title: '배송중', status: 'DuringShipping' },
+            { value: afterShipping.length, title: '배송완료', status: 'AfterShipping' },
+            { value: purchaseConfirm.length, title: '구매확정', status: 'PurchaseConfirm' },
           ].map((element) => (
-            <div className="flex flex-col justify-center items-center  bg-orange w-1/5 py-1.5 rounded-md shadow-md cursor-pointer" key={element.title}>
+            <div
+              className="flex flex-col justify-center items-center  bg-orange w-1/5 py-1.5 rounded-md shadow-md cursor-pointer"
+              key={element.title}
+              onClick={() => setStatus(element.status)}
+            >
               <span className="text-lg font-semibold text-beige">{element.value}</span>
               <span className="text-sm text-beige">{element.title}</span>
             </div>
@@ -52,7 +66,7 @@ const Profile = ({ email }: { email: string }) => {
         <table>
           <thead>
             <tr className="border-y border-ocher">
-              {['상품정보', '주문일자', '주문번호', '주문금액', '주문상태'].map((element) => (
+              {['상품정보', '주문번호', '주문금액', '주문일자', '주문상태'].map((element) => (
                 <th className="p-3 text-beige" key={element}>
                   {element}
                 </th>
@@ -60,33 +74,67 @@ const Profile = ({ email }: { email: string }) => {
             </tr>
           </thead>
           <tbody>
-            <td className="p-3 ">
-              <div className="flex gap-2">
-                <div className="flex items-center justify-center w-24 h-24 font-semibold cursor-pointer bg-mint text-orange">상품이미지</div>
-                <div className="flex flex-col flex-auto h-full gap-2 my-auto ">
-                  <span className="font-medium cursor-pointer text-beige">상품명</span>
-                  <span className="text-ocher">상품 옵션</span>
-                </div>
-              </div>
-            </td>
-            <td>
-              <div className="flex items-center justify-center text-beige">2023.02.05</div>
-            </td>
-            <td>
-              <div className="flex items-center justify-center cursor-pointer text-beige">20230205000001</div>
-            </td>
-            <td>
-              <div className="flex flex-col items-center justify-center gap-2 text-beige">
-                <span>00,000원</span>
-                <span>1개</span>
-              </div>
-            </td>
-            <td>
-              <div className="flex flex-col items-center justify-center gap-2 text-beige">
-                <span className="cursor-pointer">구매확정</span>
-                <span className="cursor-pointer">배송조회</span>
-              </div>
-            </td>
+            {totalOrderList.length > 0 ? (
+              totalOrderList
+                .filter((order) => order.status.includes(status))
+                .map((order) => (
+                  <tr key={order.id} className="border-b border-ocher/50">
+                    <td className="p-3 ">
+                      <Link href={`/shop/product/${order.id}`} className="flex gap-2">
+                        <div className="flex items-center justify-center w-24 h-24 font-semibold cursor-pointer bg-mint text-orange">상품이미지</div>
+                        <div className="flex flex-col flex-auto h-full gap-2 my-auto ">
+                          <span className="font-medium cursor-pointer text-beige">{order.productName}</span>
+                          <span className="text-ocher">{order.size}</span>
+                        </div>
+                      </Link>
+                    </td>
+                    <td>
+                      <Link href={`/shop/product/${order.id}`} className="flex items-center justify-center cursor-pointer text-beige">
+                        {order.id}
+                      </Link>
+                    </td>
+                    <td>
+                      <div className="flex flex-col items-center justify-center gap-2 text-beige">
+                        <span>{priceComma(order.price)} 원</span>
+                        <span>1개</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="flex items-center justify-center text-beige">{order.orderDate}</div>
+                    </td>
+                    <td>
+                      <div className="flex flex-col items-center justify-center gap-2 text-beige">
+                        {order.status !== 'PurchaseConfirm' ? (
+                          <>
+                            <button
+                              type="button"
+                              className="px-4 py-1 rounded-md  bg-beige text-orange"
+                              onClick={() => {
+                                setTotalOrderList([
+                                  ...totalOrderList.map((element) => (element.id === order.id ? { ...order, status: 'PurchaseConfirm' } : element)),
+                                ]);
+                              }}
+                            >
+                              구매확정
+                            </button>
+                            <button type="button" className="px-4 py-1 rounded-md border border-beige text-beige">
+                              배송조회
+                            </button>
+                          </>
+                        ) : (
+                          <span>구매완료</span>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))
+            ) : (
+              <tr>
+                <td className="px-3 py-3" colSpan={5}>
+                  <div className="flex items-center justify-center w-full p-12 text-beige">주문한 상품이 없습니다.</div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -94,4 +142,4 @@ const Profile = ({ email }: { email: string }) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

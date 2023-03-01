@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import router from 'next/router';
-import { InferGetStaticPropsType } from 'next/types';
+import { InferGetStaticPropsType, NextPage } from 'next/types';
 import React, { useRef, useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
 import CartModal from '../../../components/CartModal';
 import { clothesData } from '../../../data/data';
 import useAuth from '../../../hooks/useAuth';
-import { cartState, favoritesState } from '../../../state/cart';
+import { cartState, favoritesState } from '../../../state/state';
 import { priceComma } from '../../../utils/priceComma';
 
 export const getStaticPaths = async () => {
@@ -25,7 +25,7 @@ export const getStaticProps = async ({ params }: { params: { slug: string } }) =
   };
 };
 
-const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { session } = useAuth();
   const [cart, setCart] = useRecoilState(cartState);
   const [favorites, setFavorites] = useRecoilState(favoritesState);
@@ -39,13 +39,13 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
     });
   };
 
-  const addCart = (productId: number) => {
+  const addCart = (productId: number, openModal: boolean) => {
     if (cart.find((item) => item.id === productId)) {
-      alert('이미 장바구니에 존재하는 상품입니다');
+      openModal && alert('이미 장바구니에 존재하는 상품입니다');
       return;
     } else {
       product && setCart([...cart, product]);
-      setOpenCartModal(true);
+      openModal && setOpenCartModal(true);
     }
   };
 
@@ -90,7 +90,19 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
             </div>{' '}
             <div className="flex w-full gap-2 ">
               {' '}
-              <button className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige" type="button">
+              <button
+                className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige"
+                type="button"
+                onClick={() => {
+                  if (!session) {
+                    alert('로그인이 필요합니다');
+                    router.push('/user/login');
+                  } else {
+                    product && addCart(product.id, false);
+                    router.push({ pathname: '/order', query: { id: product?.id } });
+                  }
+                }}
+              >
                 바로 구매
               </button>
               <button
@@ -100,13 +112,15 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
                   if (!session) {
                     alert('로그인이 필요합니다');
                     router.push('/user/login');
-                  } else product && addCart(product.id);
+                  } else {
+                    product && addCart(product.id, true);
+                  }
                 }}
               >
                 장바구니 담기
               </button>
               <button
-                className="flex items-center justify-center w-fit p-3 font-medium border-2 rounded-sm border-orange text-orange"
+                className="flex items-center justify-center p-3 font-medium border-2 rounded-sm w-fit border-orange text-orange"
                 type="button"
                 onClick={() => product && toggleFavorites(product?.id)}
               >
@@ -194,4 +208,4 @@ const Product = ({ product }: InferGetStaticPropsType<typeof getStaticProps>) =>
   );
 };
 
-export default Product;
+export default ProductPage;

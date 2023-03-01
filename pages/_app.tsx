@@ -9,8 +9,9 @@ import { supabaseEnv } from '../config/config';
 import FullScreenLoading from '../components/FullScreenLoading';
 import { Router } from 'next/router';
 import { RecoilRoot } from 'recoil';
+import SSRComplete from '../context/SSRComplete';
 
-const ssrRoute = ['/mypage', '/product'];
+const ssrRoute = ['/profile'];
 
 function MyApp({
   Component,
@@ -43,14 +44,15 @@ function MyApp({
   return (
     <SessionContextProvider supabaseClient={supabase} initialSession={pageProps.initialSession}>
       <RecoilRoot>
-        {' '}
-        <Head>
-          <meta content="width=device-width, initial-scale=1" name="viewport" />
-        </Head>
-        {loading && <FullScreenLoading />}{' '}
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <SSRComplete>
+          <Head>
+            <meta content="width=device-width, initial-scale=1" name="viewport" />
+          </Head>
+          {loading && <FullScreenLoading />}{' '}
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>{' '}
+        </SSRComplete>
       </RecoilRoot>
     </SessionContextProvider>
   );

@@ -9,9 +9,8 @@ const HeaderProfile = () => {
   const [openProfile, setOpenProfile] = useState(false);
 
   return (
-    <button
-      type="button"
-      className="relative flex items-center justify-center border-2 rounded-full w-fit border-brown"
+    <div
+      className="relative flex items-center justify-center border-2 rounded-full cursor-pointer border-brown"
       onClick={() => {
         setOpenProfile(!openProfile);
       }}
@@ -21,16 +20,16 @@ const HeaderProfile = () => {
         variants={{ visible: { opacity: 1, scale: 1, translateY: 4 }, hidden: { opacity: 0, scale: 0.5, originY: 0 } }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
         animate={openProfile ? 'visible' : 'hidden'}
-        className="absolute z-20 flex flex-col w-24 gap-1 p-3 rounded-lg shadow-md top-full bg-brown/95 text-beige bg-blend-multiply bg-texture"
+        className="absolute z-20 flex flex-col items-center justify-center w-24 gap-1 p-3 rounded-lg shadow-md top-full bg-brown/95 text-beige bg-blend-multiply bg-texture"
       >
         <Link href="/mypage/profile" className="p-1">
           프로필
         </Link>
-        <button className="p-1" onClick={() => logOut()}>
+        <div className="p-1" onClick={() => logOut()}>
           로그아웃
-        </button>
+        </div>
       </motion.div>
-    </button>
+    </div>
   );
 };
 

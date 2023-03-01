@@ -5,3 +5,8 @@ export interface Product {
   category: string;
   id: number;
 }
+
+export interface Order extends Product {
+  status: string;
+  orderDate: string;
+}

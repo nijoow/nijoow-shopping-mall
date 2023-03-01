@@ -13,28 +13,8 @@ interface FormValues {
   password: string;
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const supabase = createServerSupabaseClient(context, supabaseEnv);
-
-//   const {
-//     data: { session },
-//   } = await supabase.auth.getSession();
-
-//   if (session?.user)
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     };
-//   else
-//     return {
-//       props: {},
-//     };
-// };
-
-const LogIn: NextPage = () => {
-  const { logIn, loading } = useAuth();
+const LogInPage: NextPage = () => {
+  const { logIn, loading, error } = useAuth();
 
   const {
     register,
@@ -55,8 +35,8 @@ const LogIn: NextPage = () => {
   };
   return (
     <>
-      <form className="flex flex-col w-full h-full max-w-md p-8 gap-4 items-center m-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
-        <span className="text-3xl font-medium cursor-pointer text-brown font-Insomnia my-12">nijoow vintage</span>
+      <form className="flex flex-col items-center w-full h-full max-w-md gap-4 p-8 m-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+        <span className="my-12 text-3xl font-medium cursor-pointer text-brown font-Insomnia">nijoow vintage</span>
         <div className="w-full mb-auto">
           <div className="relative z-10 flex items-center w-full">
             <input
@@ -94,11 +74,11 @@ const LogIn: NextPage = () => {
               {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : <AiOutlineSwapRight />}
             </button>
           </div>
+          <span className="h-3 m-1 text-xs text-orange">{error}</span>
         </div>
-        <span className="text-sm text-brown mt-6">비밀번호를 잊으셨나요?</span>
       </form>
     </>
   );
 };
 
-export default LogIn;
+export default LogInPage;

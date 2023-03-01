@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { NextPage } from 'next';
 import React, { useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 import ProductListItem from '../../components/ProductListItem';
@@ -16,7 +17,7 @@ const filterStatus = {
   HighToLow: '높은 가격순',
 };
 
-const Shop = () => {
+const ShopPage: NextPage = () => {
   const [clothesList, setClothesList] = useState([...clothesData]);
   const [category, setCategory] = useState('');
   const [openFilter, setOpenFilter] = useState(false);
@@ -66,18 +67,18 @@ const Shop = () => {
             variants={{ visible: { opacity: 1, scale: 1, translateY: 4 }, hidden: { opacity: 0, scale: 0.5, originY: 0 } }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
             animate={openFilter ? 'visible' : 'hidden'}
-            className="absolute z-20 flex flex-col min-w-max gap-2 p-4 rounded-lg shadow-md -right-1 top-full bg-brown/95 text-beige bg-blend-multiply bg-texture"
+            className="absolute z-20 flex flex-col gap-2 p-4 rounded-lg shadow-md min-w-max -right-1 top-full bg-brown/95 text-beige bg-blend-multiply bg-texture"
           >
-            <button type="button" className="w-fit mx-auto" onClick={() => setFilter(BEST)}>
+            <button type="button" className="mx-auto w-fit" onClick={() => setFilter(BEST)}>
               {filterStatus[BEST]}
             </button>
-            <button type="button" className="w-fit mx-auto" onClick={() => setFilter(NEWEST)}>
+            <button type="button" className="mx-auto w-fit" onClick={() => setFilter(NEWEST)}>
               {filterStatus[NEWEST]}
             </button>
-            <button type="button" className="w-fit mx-auto" onClick={() => setFilter(LOW_TO_HIGH)}>
+            <button type="button" className="mx-auto w-fit" onClick={() => setFilter(LOW_TO_HIGH)}>
               {filterStatus[LOW_TO_HIGH]}
             </button>
-            <button type="button" className="w-fit mx-auto" onClick={() => setFilter(HIGH_TO_HIGH)}>
+            <button type="button" className="mx-auto w-fit" onClick={() => setFilter(HIGH_TO_HIGH)}>
               {filterStatus[HIGH_TO_HIGH]}
             </button>
           </motion.div>
@@ -97,4 +98,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopPage;
