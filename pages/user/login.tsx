@@ -76,7 +76,6 @@ const LogInPage: NextPage = () => {
           </div>
           <span className="h-3 m-1 text-xs text-orange">{error}</span>
         </div>
-        <span className="mt-6 text-sm text-brown">비밀번호를 잊으셨나요?</span>
       </form>
     </>
   );
