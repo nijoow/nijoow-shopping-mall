@@ -7,6 +7,7 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
 import { totalOrderListState } from '../../state/state';
 import { priceComma } from '../../utils/priceComma';
+import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const supabase = createServerSupabaseClient(context, supabaseEnv);
@@ -65,7 +66,7 @@ const ProfilePage = ({ email }: { email: string }) => {
         <table>
           <thead>
             <tr className="border-y border-ocher">
-              {['상품정보', '주문일자', '주문번호', '주문금액', '주문상태'].map((element) => (
+              {['상품정보', '주문번호', '주문금액', '주문일자', '주문상태'].map((element) => (
                 <th className="p-3 text-beige" key={element}>
                   {element}
                 </th>
@@ -79,25 +80,27 @@ const ProfilePage = ({ email }: { email: string }) => {
                 .map((order) => (
                   <tr key={order.id} className="border-b border-ocher/50">
                     <td className="p-3 ">
-                      <div className="flex gap-2">
+                      <Link href={`/shop/product/${order.id}`} className="flex gap-2">
                         <div className="flex items-center justify-center w-24 h-24 font-semibold cursor-pointer bg-mint text-orange">상품이미지</div>
                         <div className="flex flex-col flex-auto h-full gap-2 my-auto ">
                           <span className="font-medium cursor-pointer text-beige">{order.productName}</span>
                           <span className="text-ocher">{order.size}</span>
                         </div>
-                      </div>
+                      </Link>
                     </td>
                     <td>
-                      <div className="flex items-center justify-center text-beige">{order.orderDate}</div>
-                    </td>
-                    <td>
-                      <div className="flex items-center justify-center cursor-pointer text-beige">{order.id}</div>
+                      <Link href={`/shop/product/${order.id}`} className="flex items-center justify-center cursor-pointer text-beige">
+                        {order.id}
+                      </Link>
                     </td>
                     <td>
                       <div className="flex flex-col items-center justify-center gap-2 text-beige">
                         <span>{priceComma(order.price)} 원</span>
                         <span>1개</span>
                       </div>
+                    </td>
+                    <td>
+                      <div className="flex items-center justify-center text-beige">{order.orderDate}</div>
                     </td>
                     <td>
                       <div className="flex flex-col items-center justify-center gap-2 text-beige">

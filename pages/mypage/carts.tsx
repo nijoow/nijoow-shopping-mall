@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import router from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -85,16 +86,18 @@ const CartsPage = () => {
                   <div className="flex items-center justify-center">{index + 1}</div>
                 </td>
                 <td className="p-3">
-                  <div className="flex gap-4">
+                  <Link href={`/shop/product/${product.id}`} className="flex gap-4">
                     <div className="flex items-center justify-center w-24 h-24 font-semibold cursor-pointer bg-mint text-orange">상품이미지</div>
                     <div className="flex flex-col flex-auto h-full gap-2 my-auto">
                       <span className="font-medium cursor-pointer">{product.productName}</span>
                       <span className="text-ocher">{product.size}</span>
                     </div>
-                  </div>
+                  </Link>
                 </td>{' '}
                 <td className="p-3">
-                  <div className="flex items-center justify-center cursor-pointer">{product.id}</div>
+                  <Link href={`/shop/product/${product.id}`} className="flex items-center justify-center cursor-pointer">
+                    {product.id}
+                  </Link>
                 </td>
                 <td className="p-3">
                   <div className="flex items-center justify-center text-beige">{priceComma(product.price)}원</div>
