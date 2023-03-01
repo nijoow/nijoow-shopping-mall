@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { cartState, favoritesState, userEmailState } from '../state/state';
 interface MessageProps {
   type: 'default' | 'success' | 'error';
   payload: string | null;
@@ -12,6 +14,10 @@ const MESSAGE_DEFAULT: MessageProps = {
 const useAuth = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
+  const [userEmail, setUserEmail] = useRecoilState(userEmailState);
+  const resetCart = useResetRecoilState(cartState);
+  const resetFavorites = useResetRecoilState(favoritesState);
+
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<MessageProps>(MESSAGE_DEFAULT);
   const [loading, setLoading] = useState(false);
@@ -24,6 +30,11 @@ const useAuth = () => {
       if (error) {
         setError('이메일/비밀번호를 확인해주세요');
       } else {
+        if (userEmail && userEmail !== payload.email) {
+          resetCart();
+          resetFavorites();
+        }
+        setUserEmail(payload.email);
         router.push('/');
       }
     } catch (error) {

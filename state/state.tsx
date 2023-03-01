@@ -31,3 +31,9 @@ export const favoritesState = atom<Product[]>({
   default: [],
   effects_UNSTABLE: [persistAtomEffect],
 });
+
+export const userEmailState = atom<string | null>({
+  key: 'userEmail',
+  default: null,
+  effects_UNSTABLE: [persistAtomEffect],
+});
