@@ -13,28 +13,8 @@ interface FormValues {
   password: string;
 }
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const supabase = createServerSupabaseClient(context, supabaseEnv);
-
-//   const {
-//     data: { session },
-//   } = await supabase.auth.getSession();
-
-//   if (session?.user)
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     };
-//   else
-//     return {
-//       props: {},
-//     };
-// };
-
 const LogInPage: NextPage = () => {
-  const { logIn, loading } = useAuth();
+  const { logIn, loading, error } = useAuth();
 
   const {
     register,
@@ -94,6 +74,7 @@ const LogInPage: NextPage = () => {
               {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : <AiOutlineSwapRight />}
             </button>
           </div>
+          <span className="h-3 m-1 text-xs text-orange">{error}</span>
         </div>
         <span className="mt-6 text-sm text-brown">비밀번호를 잊으셨나요?</span>
       </form>

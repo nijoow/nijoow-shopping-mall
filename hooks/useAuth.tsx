@@ -28,7 +28,7 @@ const useAuth = () => {
       setLoading(true);
       const { error } = await supabase.auth.signInWithPassword(payload);
       if (error) {
-        setError('이메일/비밀번호를 확인해주세요');
+        setError('계정 정보를 확인해주세요');
       } else {
         if (userEmail && userEmail !== payload.email) {
           resetCart();
