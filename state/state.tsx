@@ -1,5 +1,5 @@
 import { atom, AtomEffect, useSetRecoilState } from 'recoil';
-import { Product } from '../types/types';
+import { Order, Product } from '../types/types';
 import { recoilPersist } from 'recoil-persist';
 
 const sessionStorage = typeof window !== 'undefined' ? window.sessionStorage : undefined;
@@ -35,5 +35,11 @@ export const favoritesState = atom<Product[]>({
 export const userEmailState = atom<string | null>({
   key: 'userEmail',
   default: null,
+  effects_UNSTABLE: [persistAtomEffect],
+});
+
+export const totalOrderListState = atom<Order[]>({
+  key: 'totalOrderList',
+  default: [],
   effects_UNSTABLE: [persistAtomEffect],
 });

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { cartState } from '../../state/state';
+import { cartState, totalOrderListState } from '../../state/state';
 import { Product } from '../../types/types';
 import { priceComma } from '../../utils/priceComma';
 
@@ -13,10 +13,10 @@ interface TotapProps {
 }
 
 const OrderPage = () => {
-  const [cart] = useRecoilState(cartState);
+  const [cart, setCart] = useRecoilState(cartState);
+  const [totalOrderList, setTotalOrderList] = useRecoilState(totalOrderListState);
   const router = useRouter();
   const { id } = router.query;
-  const filteredCart = cart.filter((item) => id?.includes(item.id.toString()));
 
   const [orderlist, setOrderList] = useState<Product[]>([]);
   const [total, setTotal] = useState<TotapProps>({
@@ -27,6 +27,8 @@ const OrderPage = () => {
   });
 
   useEffect(() => {
+    const filteredCart = cart.filter((item) => id?.includes(item.id.toString()));
+
     const totalPrice = filteredCart.reduce((total, item) => total + item.price, 0);
     const totalPoint = totalPrice * 0.01;
     const totalPayment = totalPrice + total.totalDeliveryFee;
@@ -38,6 +40,13 @@ const OrderPage = () => {
       totalPayment,
     });
   }, [id]);
+
+  const paymentOrder = () => {
+    alert('결제에 성공하였습니다');
+    setCart([...cart.filter((item) => !id?.includes(item.id.toString()))]);
+    setTotalOrderList([...totalOrderList, ...orderlist.map((order) => ({ ...order, status: 'BeforeShipping', orderDate: new Date().toLocaleDateString() }))]);
+    router.push({ pathname: '/mypage/profile' });
+  };
 
   return (
     <div className="flex flex-col flex-auto w-full gap-4 px-4 py-4 mx-auto max-w-7xl">
@@ -156,10 +165,7 @@ const OrderPage = () => {
       <button
         type="button"
         className="px-24 py-4 mx-auto my-4 text-lg font-medium rounded-md bg-orange text-beige max-w-fit flex items-center gap-3"
-        onClick={() => {
-          alert('결제에 성공하였습니다');
-          router.push({ pathname: '/mypage/profile' });
-        }}
+        onClick={paymentOrder}
       >
         <span className="text-2xl font-bold">{total.totalPayment && priceComma(total.totalPayment)} 원</span> 결제하기{' '}
       </button>{' '}
