@@ -4,7 +4,7 @@ import { InferGetStaticPropsType, NextPage } from 'next/types';
 import React, { useRef, useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
-import CartModal from '../../../components/CartModal';
+import CartModal from '../../../components/modal/CartModal';
 import { clothesData } from '../../../data/data';
 import useAuth from '../../../hooks/useAuth';
 import { cartState, favoritesState } from '../../../state/state';

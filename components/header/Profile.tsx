@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
-const HeaderProfile = () => {
+const Profile = () => {
   const { logOut } = useAuth();
   const [openProfile, setOpenProfile] = useState(false);
 
@@ -33,4 +33,4 @@ const HeaderProfile = () => {
   );
 };
 
-export default HeaderProfile;
+export default Profile;
