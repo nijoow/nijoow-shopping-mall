@@ -21,10 +21,10 @@ const Home = ({ blurDataURL }: { blurDataURL: string }) => {
           <span className="absolute z-10 translate-x-1 translate-y-1 text-brown/80 text-8xl font-Insomnia">nijoow vintage</span>
           <span className="absolute z-0 text-black translate-x-2 translate-y-2 text-8xl font-Insomnia">nijoow vintage</span>
         </div>
-      </div>{' '}
-      <div className="grid w-full grid-cols-12 gap-6 max-w-7xl mx-auto py-6">
+      </div>
+      <div className="grid w-full grid-cols-12 gap-6 py-6 mx-auto max-w-7xl">
         <div className="col-span-12">
-          <span className="text-2xl font-semibold text-brown">최신 업로드</span>
+          <span className="text-2xl font-semibold text-beige">최신 업로드</span>
         </div>
         {clothesData.map((product) => (
           <ProductListItem product={product} key={product.id} />
