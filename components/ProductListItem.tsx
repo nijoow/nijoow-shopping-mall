@@ -18,7 +18,7 @@ const ProductListItem = ({ product }: { product: Product }) => {
   };
 
   return (
-    <div className="flex flex-col items-center w-full col-span-6 md:col-span-3 gap-0.5">
+    <div className="flex flex-col items-center w-full col-span-2 md:col-span-1 gap-1 text-sm md:text-base">
       <Link href={`/shop/product/${product.id}`} className="w-full after:pb-[100%] bg-mint flex justify-center items-center ">
         <span className="text-3xl font-semibold text-orange">IMAGE</span>
       </Link>

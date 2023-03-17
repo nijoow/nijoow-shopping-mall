@@ -22,8 +22,8 @@ const Home = ({ blurDataURL }: { blurDataURL: string }) => {
           <span className="absolute z-0 leading-snug text-black translate-x-2 translate-y-2 font-Insomnia">nijoow vintage</span>
         </div>
       </div>
-      <div className="grid w-full grid-cols-12 gap-6 px-4 py-6 mx-auto max-w-7xl">
-        <div className="col-span-12">
+      <div className="grid w-full grid-cols-4 gap-4 md:gap-6 py-6 mx-auto max-w-7xl px-4">
+        <div className="col-span-4">
           <span className="text-2xl font-semibold text-beige">최신 업로드</span>
         </div>
         {clothesData.map((product) => (
