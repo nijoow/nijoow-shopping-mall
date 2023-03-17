@@ -127,7 +127,7 @@ const Header = () => {
                   HOME
                 </Link>
                 <Link
-                  href="/"
+                  href="/shop"
                   className={`py-4 px-4 w-full text-xl font-medium cursor-pointer text-beige ${router.pathname.includes('/shop') ? 'bg-black/30' : ''}`}
                 >
                   SHOP

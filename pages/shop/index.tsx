@@ -17,8 +17,7 @@ const ShopPage: NextPage = () => {
         <Filter setClothesList={setClothesList} />
       </div>
       <div className="flex w-full h-full gap-4 px-4 pb-12 mx-auto max-w-7xl">
-        <div className="grid w-full grid-cols-12 gap-6">
-          {' '}
+        <div className="grid w-full grid-cols-4 gap-4 md:gap-6">
           {clothesList
             .filter((value) => value.category.includes(category))
             .map((product) => (
