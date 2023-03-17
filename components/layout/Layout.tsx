@@ -16,7 +16,7 @@ export default function Layout(props: Props) {
       <Header />{' '}
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          className="relative flex flex-col flex-auto w-full"
+          className="relative flex flex-col flex-auto w-full "
           key={router.asPath}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
