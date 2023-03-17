@@ -24,9 +24,9 @@ const SignUpPage: NextPage = () => {
   };
 
   return (
-    <>
-      <form className="flex flex-col w-full h-full max-w-md m-auto p-8 gap-2 items-center bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
-        <span className="text-3xl font-medium cursor-pointer text-brown font-Insomnia my-12">nijoow vintage</span>
+    <div className="flex w-full flex-auto items-center justify-center px-4">
+      <form className="flex flex-col w-full h-full max-w-md m-auto p-4 md:p-8 gap-2 items-center bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+        <span className="text-2xl md:text-3xl font-medium cursor-pointer text-brown font-Insomnia my-12">nijoow vintage</span>
         <label className="flex flex-col w-full gap-0.5">
           <span className="mx-1 text-sm text-brown">이메일</span>
           <input
@@ -41,7 +41,7 @@ const SignUpPage: NextPage = () => {
               },
             })}
           />{' '}
-          <span className="h-3 m-1 text-xs text-orange">{errors.email?.message}</span>
+          <span className="h-fit m-1 text-xs text-orange">{errors.email?.message}</span>
         </label>{' '}
         <label className="flex flex-col w-full gap-0.5">
           <span className="mx-1 text-sm text-brown">비밀번호</span>
@@ -63,9 +63,9 @@ const SignUpPage: NextPage = () => {
             })}
           />{' '}
           {errors.password ? (
-            <span className="h-3 m-1 text-xs text-orange">{errors.password?.message}</span>
+            <span className="h-fit m-1 text-xs text-orange">{errors.password?.message}</span>
           ) : (
-            <span className="h-3 m-1 text-xs text-brown">{!watch('password') && '숫자+영문자+특수문자를 조합한 8자리 이상으로 입력해주세요'}</span>
+            <span className="h-fit m-1 text-xs text-brown">{!watch('password') && '숫자+영문자+특수문자를 조합한 8자리 이상으로 입력해주세요'}</span>
           )}
         </label>{' '}
         <label className="flex flex-col w-full gap-0.5">
@@ -76,7 +76,7 @@ const SignUpPage: NextPage = () => {
             placeholder="비밀번호를 재입력해주세요"
             {...register('passwordCheck', { required: true, validate: (value) => value === watch('password') || '비밀번호가 일치하지 않습니다' })}
           />{' '}
-          <span className="h-3 m-1 text-xs text-orange">{errors.passwordCheck?.message}</span>
+          <span className="h-fit m-1 text-xs text-orange">{errors.passwordCheck?.message}</span>
         </label>
         <button
           className={` w-32 h-12 mt-6 flex items-center justify-center font-medium rounded-lg text-beige  ${loading ? 'bg-ocher' : 'bg-brown'}`}
@@ -96,7 +96,7 @@ const SignUpPage: NextPage = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
