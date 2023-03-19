@@ -45,7 +45,7 @@ const ProfilePage = ({ email }: { email: string }) => {
           </span>
           <span className="mx-auto font-medium text-beige">{email}</span>
         </div>
-        <div className="flex w-full max-w-lg gap-2 mx-auto">
+        <div className="flex w-full max-w-lg gap-2 mx-auto overflow-x-auto py-1">
           {[
             { value: totalOrderList.length, title: '전체', status: '' },
             { value: beforeShipping.length, title: '배송전', status: 'BeforeShipping' },
@@ -54,7 +54,7 @@ const ProfilePage = ({ email }: { email: string }) => {
             { value: purchaseConfirm.length, title: '구매확정', status: 'PurchaseConfirm' },
           ].map((element) => (
             <div
-              className="flex flex-col justify-center items-center  bg-orange w-1/5 py-1.5 rounded-md shadow-md cursor-pointer"
+              className="flex flex-col min-w-[72px] px-2 justify-center items-center bg-orange w-1/5 py-1.5 rounded-md shadow-md cursor-pointer"
               key={element.title}
               onClick={() => setStatus(element.status)}
             >
@@ -63,7 +63,7 @@ const ProfilePage = ({ email }: { email: string }) => {
             </div>
           ))}
         </div>{' '}
-        <table>
+        <table className="hidden md:table">
           <thead>
             <tr className="border-y border-ocher">
               {['상품정보', '주문번호', '주문금액', '주문일자', '주문상태'].map((element) => (
@@ -137,6 +137,56 @@ const ProfilePage = ({ email }: { email: string }) => {
             )}
           </tbody>
         </table>
+        <div className="md:hidden w-full flex flex-col border-t border-ocher/50">
+          {totalOrderList.length > 0 ? (
+            totalOrderList
+              .filter((order) => order.status.includes(status))
+              .map((order, index) => (
+                <div key={order.id} className="w-full flex-col gap-1 flex relative py-3 border-b border-ocher/50">
+                  <Link href={`/shop/product/${order.id}`} className="flex gap-4">
+                    <div className="flex items-center justify-center w-24 h-24 font-semibold cursor-pointer bg-mint text-orange">상품이미지</div>
+                    <div className="flex flex-col flex-auto h-full gap-1 my-auto">
+                      <span className="font-medium cursor-pointer text-beige">{order.productName}</span>
+                      <span className="text-ocher">{order.size}</span>
+                      <span className="text-beige">{order.id}</span>
+                    </div>
+                  </Link>{' '}
+                  <div className="flex px-1 justify-between text-beige">
+                    <span>주문 일자</span>
+                    <span className="flex items-center justify-center">{order.orderDate}</span>
+                  </div>
+                  <div className="flex px-1 justify-between text-beige">
+                    <span>주문 금액</span>
+                    <span className="flex items-center justify-center">{priceComma(order.price)}원</span>
+                  </div>
+                  <div className="flex flex-col items-center justify-center gap-2 mt-2 text-beige">
+                    {order.status !== 'PurchaseConfirm' ? (
+                      <>
+                        <button
+                          type="button"
+                          className="px-4 py-1 rounded-md w-full bg-beige text-orange"
+                          onClick={() => {
+                            setTotalOrderList([
+                              ...totalOrderList.map((element) => (element.id === order.id ? { ...order, status: 'PurchaseConfirm' } : element)),
+                            ]);
+                          }}
+                        >
+                          구매확정
+                        </button>
+                        <button type="button" className="px-4 py-1 w-full rounded-md border border-beige text-beige">
+                          배송조회
+                        </button>
+                      </>
+                    ) : (
+                      <span className="px-4 py-1 w-full rounded-md border border-beige text-beige text-center ">구매완료</span>
+                    )}
+                  </div>
+                </div>
+              ))
+          ) : (
+            <div className="flex items-center justify-center w-full p-12 text-beige">결제할 상품이 없습니다.</div>
+          )}
+        </div>
       </div>
     </div>
   );
