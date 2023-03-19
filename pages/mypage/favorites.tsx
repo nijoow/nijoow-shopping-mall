@@ -10,7 +10,7 @@ const FavoritesPage = () => {
     <div className="flex flex-col flex-auto w-full px-4 py-4 mx-auto max-w-7xl">
       <span className="text-xl font-medium text-beige">관심 상품</span>
       {favorites.length > 0 ? (
-        <div className="grid w-full grid-cols-12 gap-6 flex-auto py-4">
+        <div className="grid w-full grid-cols-4 gap-4 md:gap-6 flex-auto py-4">
           {favorites.map((product) => (
             <ProductListItem product={product} key={product.id} />
           ))}
