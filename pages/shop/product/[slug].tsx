@@ -64,31 +64,31 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
           <div className="w-full after:pb-[100%] bg-mint flex justify-center items-center max-w-2xl">
             <span className="text-3xl font-semibold text-orange">IMAGE</span>
           </div>
-          <div className="flex flex-col justify-center w-full md:max-w-lg max-w-2xl gap-4 px-4 md:px-0">
+          <div className="flex flex-col justify-center w-full md:max-w-lg max-w-2xl gap-4 ">
             <div className="w-full mb-auto border-t-2 border-orange"></div>
-            <span className="w-full text-4xl font-medium text-beige">
+            <span className="w-full text-2xl md:text-4xl font-medium text-beige px-2 md:px-0">
               {product?.productName} {product?.size ? `(${product.size})` : ''}
             </span>{' '}
-            <span className="w-full text-3xl font-medium text-ocher">{product && priceComma(product.price)}원</span>
-            <div className="flex w-full">
+            <span className="w-full text-xl md:text-3xl font-medium text-ocher px-2 md:px-0">{product && priceComma(product.price)}원</span>
+            <div className="flex w-full px-2 md:px-0">
               <span className="text-beige">상품 간단 설명</span>
             </div>
-            <div className="flex w-full gap-20">
-              <span className="text-beige">적립금</span>
-              <span className="text-beige">{product && priceComma(product.price * 0.01)}원 (1%)</span>
+            <div className="flex w-full gap-10 md:gap-20 px-2 md:px-0">
+              <span className="text-beige min-w-fit">적립금</span>
+              <span className="text-beige min-w-fit">{product && priceComma(product.price * 0.01)}원 (1%)</span>
             </div>
-            <div className="flex w-full gap-20">
-              <span className="text-beige">배송비</span>
-              <span className="text-beige">
+            <div className="flex w-full gap-10 md:gap-20 px-2 md:px-0">
+              <span className="text-beige min-w-fit">배송비</span>
+              <span className="text-beige min-w-min">
                 {priceComma(3000)}원 ({priceComma(50000)}원 이상 구매시 무료)
               </span>
             </div>
             <div className="w-full mt-auto border-t-2 border-orange"></div>
-            <div className="flex justify-between w-full py-3">
+            <div className="flex justify-between w-full py-3 px-2 md:px-0">
               <span className="text-xl font-medium text-beige">총 상품금액</span>{' '}
               <span className="text-xl font-medium text-ocher">{product && priceComma(product.price)}원</span>
             </div>{' '}
-            <div className="flex w-full gap-2 ">
+            <div className="flex w-full gap-2 flex-wrap md:flex-nowrap">
               {' '}
               <button
                 className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige"
@@ -106,7 +106,7 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
                 바로 구매
               </button>
               <button
-                className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm border-orange text-orange"
+                className="flex items-center justify-center flex-auto md:w-full p-5 font-medium border-2 rounded-sm border-orange text-orange"
                 type="button"
                 onClick={() => {
                   if (!session) {
