@@ -4,7 +4,7 @@ import { InferGetStaticPropsType, NextPage } from 'next/types';
 import React, { useRef, useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
-import CartModal from '../../../components/CartModal';
+import CartModal from '../../../components/modal/CartModal';
 import { clothesData } from '../../../data/data';
 import useAuth from '../../../hooks/useAuth';
 import { cartState, favoritesState } from '../../../state/state';
@@ -59,36 +59,36 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
 
   return (
     <>
-      <div className="flex flex-col w-full h-full gap-24 py-8 mx-auto max-w-7xl">
-        <div className="flex w-full h-full gap-8 justify-evenly">
+      <div className="flex flex-col w-full h-full md:pt-8 pb-8 gap-24 mx-auto max-w-7xl">
+        <div className="flex w-full h-full gap-8 justify-evenly items-center md:items-stretch flex-col md:flex-row">
           <div className="w-full after:pb-[100%] bg-mint flex justify-center items-center max-w-2xl">
             <span className="text-3xl font-semibold text-orange">IMAGE</span>
           </div>
-          <div className="flex flex-col justify-center w-full max-w-lg gap-4">
+          <div className="flex flex-col justify-center w-full md:max-w-lg max-w-2xl gap-4 ">
             <div className="w-full mb-auto border-t-2 border-orange"></div>
-            <span className="w-full text-4xl font-medium text-beige">
+            <span className="w-full text-2xl md:text-4xl font-medium text-beige px-2 md:px-0">
               {product?.productName} {product?.size ? `(${product.size})` : ''}
             </span>{' '}
-            <span className="w-full text-3xl font-medium text-ocher">{product && priceComma(product.price)}원</span>
-            <div className="flex w-full">
+            <span className="w-full text-xl md:text-3xl font-medium text-ocher px-2 md:px-0">{product && priceComma(product.price)}원</span>
+            <div className="flex w-full px-2 md:px-0">
               <span className="text-beige">상품 간단 설명</span>
             </div>
-            <div className="flex w-full gap-20">
-              <span className="text-beige">적립금</span>
-              <span className="text-beige">{product && priceComma(product.price * 0.01)}원 (1%)</span>
+            <div className="flex w-full gap-10 md:gap-20 px-2 md:px-0">
+              <span className="text-beige min-w-fit">적립금</span>
+              <span className="text-beige min-w-fit">{product && priceComma(product.price * 0.01)}원 (1%)</span>
             </div>
-            <div className="flex w-full gap-20">
-              <span className="text-beige">배송비</span>
-              <span className="text-beige">
+            <div className="flex w-full gap-10 md:gap-20 px-2 md:px-0">
+              <span className="text-beige min-w-fit">배송비</span>
+              <span className="text-beige min-w-min">
                 {priceComma(3000)}원 ({priceComma(50000)}원 이상 구매시 무료)
               </span>
             </div>
             <div className="w-full mt-auto border-t-2 border-orange"></div>
-            <div className="flex justify-between w-full py-3">
+            <div className="flex justify-between w-full py-3 px-2 md:px-0">
               <span className="text-xl font-medium text-beige">총 상품금액</span>{' '}
               <span className="text-xl font-medium text-ocher">{product && priceComma(product.price)}원</span>
             </div>{' '}
-            <div className="flex w-full gap-2 ">
+            <div className="flex w-full gap-2 flex-wrap md:flex-nowrap">
               {' '}
               <button
                 className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm bg-orange border-orange text-beige"
@@ -106,7 +106,7 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
                 바로 구매
               </button>
               <button
-                className="flex items-center justify-center w-full p-5 font-medium border-2 rounded-sm border-orange text-orange"
+                className="flex items-center justify-center flex-auto md:w-full p-5 font-medium border-2 rounded-sm border-orange text-orange"
                 type="button"
                 onClick={() => {
                   if (!session) {
@@ -129,79 +129,80 @@ const ProductPage = ({ product }: InferGetStaticPropsType<typeof getStaticProps>
             </div>
           </div>
         </div>
-        <div className="flex justify-center w-full border-b-2 border-orange" ref={(element) => (sectionRef.current[0] = element)}>
-          <button
-            type="button"
-            className="w-fullp-4 px-8 flex items-center justify-center border-2 translate-y-0.5 translate-x-0.5 text-beige border-orange bg-orange"
-            onClick={() => moveToSection(0)}
-          >
-            상품정보
-          </button>
-          <button
-            type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 border-orange text-orange"
-            onClick={() => moveToSection(1)}
-          >
-            결제/교환/배송정보
-          </button>
-          <button
-            type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 -translate-x-0.5 border-orange text-orange"
-            onClick={() => moveToSection(2)}
-          >
-            상품문의 (0)
-          </button>
-        </div>
-        <div className="h-[600px] w-full flex items-center justify-center text-mint">상품정보</div>
-        <div className="flex justify-center w-full border-b-2 border-orange" ref={(element) => (sectionRef.current[1] = element)}>
-          <button
-            type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 translate-x-0.5 text-orange border-orange"
-            onClick={() => moveToSection(0)}
-          >
-            상품정보
-          </button>
-          <button
-            type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 text-beige border-orange bg-orange"
-            onClick={() => moveToSection(1)}
-          >
-            결제/교환/배송정보
-          </button>
-          <button
-            type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 -translate-x-0.5 border-orange text-orange"
-            onClick={() => moveToSection(2)}
-          >
-            상품문의 (0)
-          </button>
-        </div>
-        <div className="h-[600px] w-full flex items-center justify-center text-mint"> 결제/교환/배송정보</div>
 
-        <div className="flex justify-center w-full border-b-2 border-orange" ref={(element) => (sectionRef.current[2] = element)}>
+        <div className="flex justify-center w-full" ref={(element) => (sectionRef.current[0] = element)}>
           <button
             type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 translate-x-0.5 text-orange border-orange"
+            className="w-full py-2 md:py-4 px-1 break-keep text-sm md:text-base flex items-center justify-center border-2 text-beige border-orange bg-orange"
             onClick={() => moveToSection(0)}
           >
             상품정보
           </button>
           <button
             type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 border-orange text-orange"
+            className="py-2 md:py-4 w-full break-keep px-1 text-sm md:text-base flex items-center justify-center border-y-2 border-orange text-orange"
             onClick={() => moveToSection(1)}
           >
             결제/교환/배송정보
           </button>
           <button
             type="button"
-            className="p-4 px-8 flex items-center justify-center border-2 translate-y-0.5 -translate-x-0.5 text-beige border-orange bg-orange"
+            className="py-2 md:py-4 w-full break-keep px-1 text-sm md:text-base flex items-center justify-center border-2 border-orange text-orange"
             onClick={() => moveToSection(2)}
           >
             상품문의 (0)
           </button>
         </div>
-        <div className="h-[600px] w-full flex items-center justify-center text-mint"> 상품문의</div>
+        <div className="h-[200px] md:h-[600px] w-full flex items-center justify-center text-mint">상품정보</div>
+        <div className="flex justify-center w-full" ref={(element) => (sectionRef.current[1] = element)}>
+          <button
+            type="button"
+            className="w-full py-2 md:py-4 break-keep px-1 text-sm md:text-base flex items-center justify-center border-2 border-orange text-orange"
+            onClick={() => moveToSection(0)}
+          >
+            상품정보
+          </button>
+          <button
+            type="button"
+            className="w-full py-2 md:py-4 break-keep px-1 text-sm md:text-base flex items-center justify-center border-y-2 text-beige border-orange bg-orange"
+            onClick={() => moveToSection(1)}
+          >
+            결제/교환/배송정보
+          </button>
+          <button
+            type="button"
+            className="w-full py-2 md:py-4 break-keep px-1 text-sm md:text-base flex items-center justify-center border-2 border-orange text-orange"
+            onClick={() => moveToSection(2)}
+          >
+            상품문의 (0)
+          </button>
+        </div>
+        <div className="h-[200px] md:h-[600px] w-full flex items-center justify-center text-mint"> 결제/교환/배송정보</div>
+
+        <div className="flex justify-center w-full" ref={(element) => (sectionRef.current[2] = element)}>
+          <button
+            type="button"
+            className="w-full py-2 md:py-4 break-keep px-1 text-sm md:text-base flex items-center justify-center border-2 border-orange text-orange"
+            onClick={() => moveToSection(0)}
+          >
+            상품정보
+          </button>
+          <button
+            type="button"
+            className="w-full break-keep py-2 md:py-4 px-1 text-sm md:text-base flex items-center justify-center border-y-2 border-orange text-orange"
+            onClick={() => moveToSection(1)}
+          >
+            결제/교환/배송정보
+          </button>
+          <button
+            type="button"
+            className="w-full py-2 md:py-4 break-keep px-1 text-sm md:text-base flex items-center justify-center border-2 text-beige border-orange bg-orange"
+            onClick={() => moveToSection(2)}
+          >
+            상품문의 (0)
+          </button>
+        </div>
+        <div className="h-[200px] md:h-[600px] w-full flex items-center justify-center text-mint"> 상품문의</div>
       </div>
       {openCartModal && <CartModal setOpenCartModal={setOpenCartModal} />}
     </>

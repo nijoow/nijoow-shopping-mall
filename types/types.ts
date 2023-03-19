@@ -10,3 +10,5 @@ export interface Order extends Product {
   status: string;
   orderDate: string;
 }
+
+export type Category = '' | 'Outer' | 'Bottom' | 'Top' | 'Acc';

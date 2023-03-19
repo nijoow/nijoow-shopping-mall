@@ -7,6 +7,7 @@ import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import useAuth from '../../hooks/useAuth';
 import { supabaseEnv } from '../../config/config';
+import Link from 'next/link';
 
 interface FormValues {
   email: string;
@@ -34,10 +35,10 @@ const LogInPage: NextPage = () => {
     }
   };
   return (
-    <>
-      <form className="flex flex-col items-center w-full h-full max-w-md gap-4 p-8 m-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
-        <span className="my-12 text-3xl font-medium cursor-pointer text-brown font-Insomnia">nijoow vintage</span>
-        <div className="w-full mb-auto">
+    <div className="flex w-full flex-auto items-center justify-center px-4">
+      <form className="flex flex-col items-center w-full h-full max-w-md gap-4 p-4 md:p-8 my-auto bg-beige/70 rounded-2xl" onSubmit={handleSubmit(onSubmit)}>
+        <span className="my-12 text-2xl md:text-3xl font-medium cursor-pointer text-brown font-Insomnia">nijoow vintage</span>
+        <div className="w-full">
           <div className="relative z-10 flex items-center w-full">
             <input
               className={`w-full h-12 px-4 border border-brown/30 placeholder:text-ocher/50 text-brown focus:outline-brown ${
@@ -74,10 +75,13 @@ const LogInPage: NextPage = () => {
               {loading ? <AiOutlineLoading3Quarters className="animate-spin" /> : <AiOutlineSwapRight />}
             </button>
           </div>
-          <span className="h-3 m-1 text-xs text-orange">{error}</span>
+          <span className="h-fit m-1 text-xs text-orange">{error}</span>
         </div>
+        <Link className="h-fit mb-auto text-sm mx-auto px-2 w-fit flex justify-center text-brown" href={'/user/signup'}>
+          이메일로 회원가입
+        </Link>
       </form>
-    </>
+    </div>
   );
 };
 

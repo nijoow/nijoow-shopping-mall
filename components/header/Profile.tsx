@@ -2,20 +2,20 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 
-const HeaderProfile = () => {
+const Profile = () => {
   const { logOut } = useAuth();
   const [openProfile, setOpenProfile] = useState(false);
 
   return (
     <div
-      className="relative flex items-center justify-center border-2 rounded-full cursor-pointer border-brown"
+      className="relative flex items-center justify-center border-2 rounded-full cursor-pointer md:border-brown"
       onClick={() => {
         setOpenProfile(!openProfile);
       }}
     >
-      <AiOutlineUser size={20} className="text-brown" />
+      <AiOutlineUser size={20} className="md:text-brown" />
       <motion.div
         variants={{ visible: { opacity: 1, scale: 1, translateY: 4 }, hidden: { opacity: 0, scale: 0.5, originY: 0 } }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
@@ -33,4 +33,4 @@ const HeaderProfile = () => {
   );
 };
 
-export default HeaderProfile;
+export default Profile;
